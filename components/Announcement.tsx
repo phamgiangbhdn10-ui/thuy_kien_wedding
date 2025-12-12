@@ -200,16 +200,6 @@ export default function Announcement() {
             </p>
           </div>
         </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-          <div className="flex flex-col items-center text-navy/50">
-            <span className="font-montserrat text-xs tracking-widest mb-3 uppercase">Cuộn xuống</span>
-            <div className="w-7 h-12 border-2 border-navy/30 rounded-full flex justify-center pt-2">
-              <div className="w-1.5 h-3 bg-[#D4AF37] rounded-full animate-bounce" />
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Corner Decorations - More prominent */}

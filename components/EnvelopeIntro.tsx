@@ -11,7 +11,6 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const envelopeRef = useRef<HTMLDivElement>(null)
   const flapRef = useRef<HTMLDivElement>(null)
-  const cardRef = useRef<HTMLDivElement>(null)
   const shadowRef = useRef<HTMLDivElement>(null)
   const [isAnimating, setIsAnimating] = useState(false)
 
@@ -37,67 +36,62 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
       ease: 'power2.out'
     })
 
-    // Open the flap with 3D rotation
+    // Open the flap with 3D rotation - smooth and natural
     tl.to(flapRef.current, {
       rotateX: 180,
-      duration: 1,
-      ease: 'power3.inOut'
+      z: 20,
+      duration: 1.5,
+      ease: 'power2.inOut'
     })
 
-    // Card rises out of envelope
-    tl.to(cardRef.current, {
-      y: -320,
-      duration: 1.2,
-      ease: 'power2.out'
-    }, '-=0.4')
+    // Hold for a moment
+    tl.to({}, { duration: 0.5 })
 
-    // Scale up card beautifully
-    tl.to(cardRef.current, {
-      scale: 1.15,
-      duration: 0.6,
-      ease: 'power2.inOut'
-    }, '-=0.3')
-
-    // Fade envelope and enlarge card to fill screen
+    // Fade out envelope
     tl.to(envelopeRef.current, {
       opacity: 0,
-      y: 100,
-      duration: 0.6
-    }, '-=0.4')
-
-    tl.to(cardRef.current, {
-      scale: 2.5,
-      opacity: 0,
+      scale: 0.95,
       duration: 0.8,
-      ease: 'power2.in'
-    }, '-=0.3')
+      ease: 'power2.inOut'
+    })
   }
 
   useEffect(() => {
-    // Initial animation sequence
+    // Initial animation sequence - smooth and elegant
     const tl = gsap.timeline()
     
-    // Envelope drops in with bounce
+    // Envelope gracefully fades in and settles
     tl.fromTo(envelopeRef.current,
-      { y: -200, opacity: 0, rotateZ: -5 },
-      { y: 0, opacity: 1, rotateZ: 0, duration: 1.2, ease: 'bounce.out' }
+      { y: -60, opacity: 0, scale: 0.9 },
+      { 
+        y: 0, 
+        opacity: 1, 
+        scale: 1, 
+        duration: 1.4, 
+        ease: 'power3.out'
+      }
     )
 
-    // Shadow appears
+    // Shadow smoothly appears
     tl.fromTo(shadowRef.current,
-      { scaleX: 0.5, opacity: 0 },
-      { scaleX: 1, opacity: 0.3, duration: 0.5 },
-      '-=0.8'
+      { scaleX: 0.3, opacity: 0 },
+      { 
+        scaleX: 1, 
+        opacity: 0.3, 
+        duration: 1,
+        ease: 'power2.out'
+      },
+      '-=1.2'
     )
 
-    // Gentle floating animation
+    // Gentle floating animation - very subtle
     gsap.to(envelopeRef.current, {
-      y: -8,
-      duration: 2,
+      y: -5,
+      duration: 2.5,
       repeat: -1,
       yoyo: true,
       ease: 'sine.inOut',
-      delay: 1.5
+      delay: 1.4
     })
   }, [])
 
@@ -176,6 +170,7 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
         onClick={startAnimation}
         style={{ transformStyle: 'preserve-3d' }}
       >
+
         {/* Envelope Body - Luxury Paper Texture */}
         <div 
           className="relative w-[380px] h-[260px] rounded-lg overflow-hidden"
@@ -185,7 +180,8 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
               0 25px 50px -12px rgba(25, 47, 74, 0.25),
               0 0 0 1px rgba(25, 47, 74, 0.1),
               inset 0 1px 0 rgba(255,255,255,0.8)
-            `
+            `,
+            zIndex: 10
           }}
         >
           {/* Paper texture overlay */}
@@ -242,195 +238,136 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
             </svg>
           </div>
 
-          {/* Wax Seal - Prominent */}
-          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 group-hover:scale-110 transition-transform duration-300">
-            <div 
-              className="relative w-20 h-20 rounded-full flex items-center justify-center"
-              style={{
-                background: 'linear-gradient(145deg, #2A4A6B, #192F4A)',
-                boxShadow: `
-                  0 8px 20px rgba(25, 47, 74, 0.4),
-                  inset 0 2px 4px rgba(255,255,255,0.1),
-                  inset 0 -2px 4px rgba(0,0,0,0.2)
-                `
-              }}
-            >
-              {/* Seal texture */}
-              <div className="absolute inset-1 rounded-full border border-[#D4AF37]/30" />
-              <div className="absolute inset-2 rounded-full border border-white/10" />
-              
-              {/* Monogram */}
-              <div className="flex items-center gap-1 text-[#D4AF37]">
-                <span className="font-playfair text-2xl font-semibold">K</span>
-                <span className="text-xl">&</span>
-                <span className="font-playfair text-2xl font-semibold">T</span>
-              </div>
+          {/* Inner envelope opening - V shape to show card inside */}
+          <div className="absolute top-0 left-0 right-0 h-[140px] overflow-hidden">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full">
+              <svg viewBox="0 0 380 140" className="w-full h-full">
+                <path 
+                  d="M0 0 L190 140 L380 0" 
+                  fill="rgba(25, 47, 74, 0.05)"
+                  stroke="rgba(25, 47, 74, 0.1)"
+                  strokeWidth="1"
+                />
+              </svg>
             </div>
-            
-            {/* Seal drip effect */}
-            <div 
-              className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-3 rounded-b-full"
-              style={{ background: 'linear-gradient(180deg, #192F4A, #0F1F30)' }}
-            />
           </div>
         </div>
+
+        {/* Wax Seal - Clickable Button at Flap Edge (Phong Bì Chốt) */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation()
+            startAnimation()
+          }}
+          className="absolute top-[139px] left-1/2 -translate-x-1/2 cursor-pointer hover:scale-110 active:scale-95 transition-all duration-300 group"
+          style={{
+            transform: 'translateX(-50%) translateY(-50%)',
+            zIndex: 20
+          }}
+          aria-label="Mở thiệp"
+        >
+          <div 
+            className="relative w-20 h-20 rounded-full flex items-center justify-center"
+            style={{
+              background: 'linear-gradient(145deg, #2A4A6B, #192F4A)',
+              boxShadow: `
+                0 8px 20px rgba(25, 47, 74, 0.4),
+                0 0 0 2px rgba(212, 175, 55, 0.3),
+                inset 0 2px 4px rgba(255,255,255,0.1),
+                inset 0 -2px 4px rgba(0,0,0,0.2)
+              `
+            }}
+          >
+            {/* Seal texture */}
+            <div className="absolute inset-1 rounded-full border border-[#D4AF37]/30" />
+            <div className="absolute inset-2 rounded-full border border-white/10" />
+            
+            {/* Monogram */}
+            <div className="flex items-center gap-1 text-[#D4AF37] group-hover:scale-105 transition-transform">
+              <span className="font-playfair text-2xl font-semibold">K</span>
+              <span className="text-xl">&</span>
+              <span className="font-playfair text-2xl font-semibold">T</span>
+            </div>
+            
+            {/* Hover glow effect */}
+            <div className="absolute inset-0 rounded-full bg-[#D4AF37]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md" />
+          </div>
+          
+          {/* Seal drip effect */}
+          <div 
+            className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-3 rounded-b-full"
+            style={{ background: 'linear-gradient(180deg, #192F4A, #0F1F30)' }}
+          />
+          
+          {/* Click hint - small pulse animation */}
+          <div className="absolute inset-0 rounded-full border-2 border-[#D4AF37]/50 animate-ping opacity-75" />
+        </button>
 
         {/* Envelope Flap */}
         <div
           ref={flapRef}
-          className="absolute -top-[1px] left-0 w-[380px] origin-top"
+          className="absolute left-0 w-[380px]"
           style={{ 
+            top: '0px',
             transformStyle: 'preserve-3d',
-            zIndex: 10
+            zIndex: 15,
+            transformOrigin: '50% 0%',
+            transform: 'rotateX(0deg)'
           }}
         >
-          {/* Front of Flap */}
-          <div
-            className="relative w-full"
-            style={{
-              height: '140px',
-              clipPath: 'polygon(0 0, 50% 100%, 100% 0)',
-              background: 'linear-gradient(180deg, #FFFFFF 0%, #F5F3EE 100%)',
-              boxShadow: 'inset 0 -2px 10px rgba(25, 47, 74, 0.1)',
-              backfaceVisibility: 'hidden'
-            }}
-          >
-            {/* Flap decorative line */}
-            <div className="absolute top-6 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
-            
-            {/* Small ornament on flap */}
-            <div className="absolute top-10 left-1/2 -translate-x-1/2">
-              <svg width="24" height="16" viewBox="0 0 24 16" className="text-[#D4AF37]/40">
-                <path d="M12 0 L24 8 L12 16 L0 8 Z" fill="none" stroke="currentColor" strokeWidth="1"/>
-              </svg>
-            </div>
-          </div>
-          
-          {/* Back of Flap (Navy lining) */}
-          <div
-            className="absolute top-0 left-0 w-full"
-            style={{
-              height: '140px',
-              clipPath: 'polygon(0 0, 50% 100%, 100% 0)',
-              background: 'linear-gradient(180deg, #2A4A6B 0%, #192F4A 100%)',
-              transform: 'rotateX(180deg)',
-              backfaceVisibility: 'hidden'
-            }}
-          >
-            {/* Inner pattern on back */}
-            <div className="absolute inset-0 opacity-20">
-              <svg className="w-full h-full" viewBox="0 0 380 140">
-                <pattern id="innerPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <circle cx="10" cy="10" r="1" fill="#D4AF37"/>
-                </pattern>
-                <rect width="100%" height="100%" fill="url(#innerPattern)"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        {/* Wedding Card Inside */}
-        <div
-          ref={cardRef}
-          className="absolute top-6 left-1/2 -translate-x-1/2 w-[340px]"
-          style={{ 
-            transformOrigin: 'center center',
-            zIndex: 5
-          }}
-        >
-          <div 
-            className="relative rounded-lg overflow-hidden"
-            style={{
-              background: 'linear-gradient(145deg, #FFFFFF 0%, #FDFCFA 100%)',
-              boxShadow: '0 15px 40px rgba(25, 47, 74, 0.2), 0 0 0 1px rgba(212, 175, 55, 0.2)'
-            }}
-          >
-            {/* Card gold border */}
-            <div className="absolute inset-0 border-2 border-[#D4AF37]/30 rounded-lg pointer-events-none" />
-            
-            <div className="p-8 text-center">
-              {/* Heart Tree - matching invitation */}
-              <div className="flex justify-center mb-4">
-                <svg width="60" height="70" viewBox="0 0 60 80" className="text-accent">
-                  <path 
-                    d="M30 75 L30 45" 
-                    stroke="currentColor" 
-                    strokeWidth="3" 
-                    fill="none"
-                  />
-                  <path 
-                    d="M30 25 Q42 12 42 22 Q42 30 30 40 Q18 30 18 22 Q18 12 30 25" 
-                    fill="currentColor"
-                  />
-                  <path 
-                    d="M25 50 Q18 48 16 52 Q14 58 22 60" 
-                    fill="currentColor" 
-                    opacity="0.6"
-                  />
-                  <path 
-                    d="M35 50 Q42 48 44 52 Q46 58 38 60" 
-                    fill="currentColor" 
-                    opacity="0.6"
-                  />
+          <div className="relative w-full h-[142px]" style={{ transformStyle: 'preserve-3d', marginTop: '-2px' }}>
+            {/* Front of Flap */}
+            <div
+              className="absolute inset-0 w-full h-full"
+              style={{
+                clipPath: 'polygon(0 0, 50% 100%, 100% 0)',
+                background: 'linear-gradient(145deg, #FFFFFF 0%, #F8F6F0 50%, #EDE9E0 100%)',
+                boxShadow: `
+                  0 4px 12px rgba(25, 47, 74, 0.15),
+                  inset 0 -2px 10px rgba(25, 47, 74, 0.08)
+                `,
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden'
+              }}
+            >
+              {/* Flap decorative line */}
+              <div className="absolute top-6 left-1/2 -translate-x-1/2 w-32 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
+              
+              {/* Small ornament on flap */}
+              <div className="absolute top-10 left-1/2 -translate-x-1/2">
+                <svg width="24" height="16" viewBox="0 0 24 16" className="text-[#D4AF37]/40">
+                  <path d="M12 0 L24 8 L12 16 L0 8 Z" fill="none" stroke="currentColor" strokeWidth="1"/>
                 </svg>
               </div>
-
-              {/* Elegant Monogram */}
-              <div className="flex items-center justify-center gap-3 mb-3">
-                <span className="font-playfair text-5xl text-navy font-light tracking-wide">K</span>
-                <div className="flex flex-col items-center">
-                  <div className="w-px h-4 bg-[#D4AF37]" />
-                  <div className="w-2 h-2 rounded-full bg-[#D4AF37] my-1" />
-                  <div className="w-px h-4 bg-[#D4AF37]" />
-                </div>
-                <span className="font-playfair text-5xl text-navy font-light tracking-wide">T</span>
-              </div>
-              
-              <p className="font-playfair text-lg text-navy italic mb-1">
-                Trung Kiên & Ngọc Thuỷ
-              </p>
-              
-              {/* Decorative divider */}
-              <div className="flex items-center justify-center gap-2 my-4">
-                <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#D4AF37]" />
-                <svg width="16" height="16" viewBox="0 0 16 16" className="text-[#D4AF37]">
-                  <path d="M8 0 L10 6 L16 8 L10 10 L8 16 L6 10 L0 8 L6 6 Z" fill="currentColor"/>
+            </div>
+            
+            {/* Back of Flap (Elegant lining) - shown when flap opens */}
+            <div
+              className="absolute inset-0 w-full h-full"
+              style={{
+                clipPath: 'polygon(0 0, 50% 100%, 100% 0)',
+                background: 'linear-gradient(145deg, #F8F6F0 0%, #EDE9E0 50%, #E5DDD0 100%)',
+                transform: 'rotateY(180deg)',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden'
+              }}
+            >
+              {/* Elegant pattern on back - subtle gold accents */}
+              <div className="absolute inset-0 opacity-30">
+                <svg className="w-full h-full" viewBox="0 0 380 140">
+                  <pattern id="innerPattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+                    <circle cx="15" cy="15" r="1.5" fill="#D4AF37"/>
+                  </pattern>
+                  <rect width="100%" height="100%" fill="url(#innerPattern)"/>
                 </svg>
-                <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#D4AF37]" />
               </div>
               
-              <p className="font-montserrat text-xs text-navy/70 uppercase tracking-[0.25em] mb-3">
-                Trân Trọng Kính Mời
-              </p>
-              
-              <div className="inline-block px-6 py-2 border border-[#D4AF37]/40 rounded">
-                <p className="font-playfair text-2xl text-accent font-medium">
-                  03.01.2026
-                </p>
-              </div>
+              {/* Decorative border inside */}
+              <div className="absolute inset-2 border border-[#D4AF37]/20" style={{ clipPath: 'polygon(2% 5%, 50% 98%, 98% 5%)' }} />
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Click Instruction */}
-      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 text-center">
-        <div className="relative">
-          <p className="font-montserrat text-base text-navy/80 mb-3 tracking-wide">
-            ✨ Nhấn vào thiệp để mở ✨
-          </p>
-          <div className="flex justify-center">
-            <div className="w-10 h-14 border-2 border-navy/30 rounded-full flex justify-center pt-2">
-              <div className="w-1.5 h-3 bg-accent rounded-full animate-bounce" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Title at top */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 text-center">
-        <p className="font-playfair text-3xl text-navy mb-2">Wedding Invitation</p>
-        <div className="h-px w-40 mx-auto bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
       </div>
     </div>
   )
