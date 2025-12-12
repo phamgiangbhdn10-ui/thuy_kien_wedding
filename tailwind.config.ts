@@ -20,7 +20,8 @@ const config: Config = {
         'gold-light': '#E8C547',
       },
       fontFamily: {
-        'playfair': ['Playfair Display', 'serif'],
+        'playfair': ['Cormorant Garamond', 'serif'],
+        'cinzel': ['Cinzel', 'serif'],
         'montserrat': ['Montserrat', 'sans-serif'],
         'script': ['Great Vibes', 'cursive'],
       },

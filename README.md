@@ -1,4 +1,4 @@
-# 💒 Wedding Page - Ngô Trung Kiên & Phạm Ngọc Thuỷ
+# 💒 Wedding Page - Ngô Trung Kiên & Phạm Ngọc Thùy
 
 Một trang web cưới sang trọng với tông màu **Tươi Sáng, Thanh Lịch** (Trắng Kem và Xanh Navy), được xây dựng với React/Next.js và các hiệu ứng GSAP đẹp mắt.
 
@@ -116,5 +116,5 @@ yarn start
 
 ## 📄 License
 
-Made with ❤️ for Trung Kiên & Ngọc Thuỷ Wedding - 03.01.2026
+Made with ❤️ for Trung Kiên & Ngọc Thùy Wedding - 03.01.2026
 

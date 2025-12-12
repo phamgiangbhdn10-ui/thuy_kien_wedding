@@ -194,28 +194,47 @@ export default function Countdown() {
           <FlipCard value={timeLeft.seconds} label="Giây" prevValue={prevTimeLeft.seconds} />
         </div>
 
-        {/* Event Time */}
-        <div className="text-center mt-14">
-          <div className="inline-block px-8 py-4 bg-white/70 backdrop-blur-sm rounded-xl shadow-lg border border-[#D4AF37]/30">
-            <p className="font-montserrat text-navy/70 text-sm tracking-wider">
-              Thứ Bảy, 03 tháng 01 năm 2026
-            </p>
-            <p className="font-playfair text-3xl text-accent mt-1 font-semibold">
-              11:00
-            </p>
-          </div>
-        </div>
       </div>
 
-      {/* Decorative Leaves */}
-      <svg className="absolute top-16 left-10 w-16 h-24 opacity-20 rotate-12 animate-float" viewBox="0 0 40 60">
-        <path d="M20 5 Q30 20 20 55 Q10 20 20 5" fill="#6B8E23" />
+      {/* Decorative Flower and Heart Patterns */}
+      {/* Heart - top left */}
+      <svg className="absolute top-16 left-10 w-24 h-24 opacity-18 rotate-12 animate-float" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="countdownHeart1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#D4AF37" />
+            <stop offset="100%" stopColor="#FFD700" />
+          </linearGradient>
+        </defs>
+        <path d="M50 30 Q60 20 70 30 Q70 40 60 50 Q50 60 50 70 Q50 60 40 50 Q30 40 30 30 Q40 20 50 30" fill="url(#countdownHeart1)" />
+        <circle cx="45" cy="35" r="2" fill="#FFD700" opacity="0.7" />
+        <circle cx="55" cy="35" r="2" fill="#FFD700" opacity="0.7" />
       </svg>
-      <svg className="absolute bottom-16 right-10 w-20 h-28 opacity-20 -rotate-12 animate-float" style={{ animationDelay: '1s' }} viewBox="0 0 40 60">
-        <path d="M20 5 Q30 20 20 55 Q10 20 20 5" fill="#6B8E23" />
+      {/* Flower - bottom right */}
+      <svg className="absolute bottom-16 right-10 w-28 h-28 opacity-15 -rotate-12 animate-float" style={{ animationDelay: '1s' }} viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="countdownFlower1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#D4AF37" />
+            <stop offset="100%" stopColor="#FFD700" />
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="30" r="12" fill="url(#countdownFlower1)" />
+        <circle cx="50" cy="70" r="12" fill="url(#countdownFlower1)" />
+        <circle cx="30" cy="50" r="12" fill="url(#countdownFlower1)" />
+        <circle cx="70" cy="50" r="12" fill="url(#countdownFlower1)" />
+        <circle cx="50" cy="50" r="8" fill="#FFD700" opacity="0.6" />
+        <circle cx="50" cy="50" r="4" fill="#D4AF37" />
       </svg>
-      <svg className="absolute top-1/3 right-20 w-12 h-18 opacity-15 rotate-45 animate-float" style={{ animationDelay: '2s' }} viewBox="0 0 40 60">
-        <path d="M20 5 Q30 20 20 55 Q10 20 20 5" fill="#6B8E23" />
+      {/* Heart - center right */}
+      <svg className="absolute top-1/3 right-20 w-20 h-20 opacity-12 rotate-45 animate-float" style={{ animationDelay: '2s' }} viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="countdownHeart1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#D4AF37" />
+            <stop offset="100%" stopColor="#FFD700" />
+          </linearGradient>
+        </defs>
+        <path d="M50 30 Q60 20 70 30 Q70 40 60 50 Q50 60 50 70 Q50 60 40 50 Q30 40 30 30 Q40 20 50 30" fill="url(#countdownHeart1)" />
+        <circle cx="45" cy="35" r="2" fill="#FFD700" opacity="0.7" />
+        <circle cx="55" cy="35" r="2" fill="#FFD700" opacity="0.7" />
       </svg>
     </section>
   )

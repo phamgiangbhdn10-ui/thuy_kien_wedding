@@ -16,34 +16,24 @@ const galleryImages = [
   { src: '/images/15x21/DSC01513.jpg', alt: 'Wedding Photo 6' },
   { src: '/images/15x21/DSC01639.jpg', alt: 'Wedding Photo 7' },
   { src: '/images/15x21/DSC01660.jpg', alt: 'Wedding Photo 8' },
-  { src: '/images/15x21/DSC01710.jpg', alt: 'Wedding Photo 9' },
-  { src: '/images/15x21/DSC01739.jpg', alt: 'Wedding Photo 10' },
-]
-
-const bannerImages = [
-  { src: '/images/60x120/60x120 (1).jpg', alt: 'Banner 1' },
-  { src: '/images/60x120/60x120 (2).jpg', alt: 'Banner 2' },
 ]
 
 export default function Gallery() {
   const sectionRef = useRef<HTMLElement>(null)
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Staggered reveal animation for gallery items
-      gsap.fromTo('.gallery-item',
-        { y: 50, opacity: 0, scale: 0.9 },
+      gsap.fromTo('.gallery-title',
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          scale: 1,
           duration: 0.6,
-          stagger: 0.1,
-          ease: 'power3.out',
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 70%',
+            start: 'top 80%',
             toggleActions: 'play none none reverse'
           }
         }
@@ -53,124 +43,261 @@ export default function Gallery() {
     return () => ctx.revert()
   }, [])
 
-  const openLightbox = (src: string) => {
-    setSelectedImage(src)
+  useEffect(() => {
+    if (selectedImageIndex === null) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        setSelectedImageIndex((prev) => prev !== null ? (prev - 1 + galleryImages.length) % galleryImages.length : null)
+      } else if (e.key === 'ArrowRight') {
+        setSelectedImageIndex((prev) => prev !== null ? (prev + 1) % galleryImages.length : null)
+      } else if (e.key === 'Escape') {
+        closeLightbox()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [selectedImageIndex])
+
+  const openLightbox = (index: number) => {
+    setSelectedImageIndex(index)
     document.body.style.overflow = 'hidden'
   }
 
   const closeLightbox = () => {
-    setSelectedImage(null)
+    setSelectedImageIndex(null)
     document.body.style.overflow = 'auto'
+  }
+
+  const goToNext = () => {
+    if (selectedImageIndex !== null) {
+      setSelectedImageIndex((selectedImageIndex + 1) % galleryImages.length)
+    }
+  }
+
+  const goToPrevious = () => {
+    if (selectedImageIndex !== null) {
+      setSelectedImageIndex((selectedImageIndex - 1 + galleryImages.length) % galleryImages.length)
+    }
   }
 
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 md:py-32 bg-cream-dark overflow-hidden"
+      className="relative py-28 md:py-36 bg-cream overflow-hidden"
     >
       <div className="container mx-auto px-4">
         {/* Section Title */}
-        <div className="text-center mb-16">
-          <h2 className="font-playfair text-3xl md:text-4xl text-navy mb-4">
+        <div className="gallery-title text-center mb-16">
+          <h2 className="font-playfair text-5xl md:text-6xl text-navy mb-6 font-light tracking-wide">
             Khoảnh Khắc Đẹp
           </h2>
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-accent/50" />
-            <svg className="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-              <circle cx="8.5" cy="8.5" r="1.5" />
-              <polyline points="21,15 16,10 5,21" />
+          <div className="flex items-center justify-center gap-4">
+            <div className="h-px w-24 bg-gradient-to-r from-transparent to-[#D4AF37]" />
+            <svg className="w-6 h-6 text-[#D4AF37]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
             </svg>
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-accent/50" />
+            <div className="h-px w-24 bg-gradient-to-l from-transparent to-[#D4AF37]" />
           </div>
-          <p className="font-montserrat text-sm text-navy/60">
-            Những kỷ niệm đáng nhớ của chúng tôi
-          </p>
         </div>
 
-        {/* Banner Images */}
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
-          {bannerImages.map((image, index) => (
-            <div
-              key={index}
-              className="gallery-item relative aspect-[2/1] rounded-2xl overflow-hidden cursor-pointer group"
-              onClick={() => openLightbox(image.src)}
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/20 transition-colors duration-300" />
-              <div className="absolute inset-0 border-4 border-transparent group-hover:border-accent transition-colors duration-300 rounded-2xl" />
-            </div>
-          ))}
-        </div>
-
-        {/* Main Gallery Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {galleryImages.map((image, index) => (
-            <div
-              key={index}
-              className="gallery-item relative aspect-[3/4] rounded-xl overflow-hidden cursor-pointer group"
-              onClick={() => openLightbox(image.src)}
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                className="object-cover transition-all duration-500 group-hover:scale-105"
-              />
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/30 transition-colors duration-300" />
-              
-              {/* Accent Border on Hover */}
-              <div className="absolute inset-0 border-4 border-transparent group-hover:border-accent transition-colors duration-300 rounded-xl" />
-              
-              {/* Zoom Icon */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="w-12 h-12 rounded-full bg-cream/90 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                  </svg>
-                </div>
+        {/* Gallery Grid - Masonry style */}
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {/* Column 1 */}
+            <div className="flex flex-col gap-4">
+              <div 
+                className="relative aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group"
+                onClick={() => openLightbox(0)}
+              >
+                <Image
+                  src={galleryImages[0].src}
+                  alt={galleryImages[0].alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              </div>
+              <div 
+                className="relative aspect-square rounded-2xl overflow-hidden cursor-pointer group"
+                onClick={() => openLightbox(1)}
+              >
+                <Image
+                  src={galleryImages[1].src}
+                  alt={galleryImages[1].alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
               </div>
             </div>
-          ))}
+
+            {/* Column 2 */}
+            <div className="flex flex-col gap-4">
+              <div 
+                className="relative aspect-square rounded-2xl overflow-hidden cursor-pointer group"
+                onClick={() => openLightbox(2)}
+              >
+                <Image
+                  src={galleryImages[2].src}
+                  alt={galleryImages[2].alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              </div>
+              <div 
+                className="relative aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group"
+                onClick={() => openLightbox(3)}
+              >
+                <Image
+                  src={galleryImages[3].src}
+                  alt={galleryImages[3].alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              </div>
+            </div>
+
+            {/* Column 3 */}
+            <div className="flex flex-col gap-4">
+              <div 
+                className="relative aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group"
+                onClick={() => openLightbox(4)}
+              >
+                <Image
+                  src={galleryImages[4].src}
+                  alt={galleryImages[4].alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              </div>
+              <div 
+                className="relative aspect-square rounded-2xl overflow-hidden cursor-pointer group"
+                onClick={() => openLightbox(5)}
+              >
+                <Image
+                  src={galleryImages[5].src}
+                  alt={galleryImages[5].alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              </div>
+            </div>
+
+            {/* Column 4 */}
+            <div className="flex flex-col gap-4">
+              <div 
+                className="relative aspect-square rounded-2xl overflow-hidden cursor-pointer group"
+                onClick={() => openLightbox(6)}
+              >
+                <Image
+                  src={galleryImages[6].src}
+                  alt={galleryImages[6].alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              </div>
+              <div 
+                className="relative aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer group"
+                onClick={() => openLightbox(7)}
+              >
+                <Image
+                  src={galleryImages[7].src}
+                  alt={galleryImages[7].alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Lightbox */}
-      {selectedImage && (
+      {/* Lightbox Slider */}
+      {selectedImageIndex !== null && (
         <div
-          className="fixed inset-0 z-50 bg-navy/95 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
           onClick={closeLightbox}
         >
+          {/* Close Button */}
           <button
-            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-cream/10 hover:bg-cream/20 flex items-center justify-center transition-colors"
+            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors z-10"
             onClick={closeLightbox}
           >
-            <svg className="w-6 h-6 text-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
+
+          {/* Previous Button */}
+          <button
+            className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors z-10"
+            onClick={(e) => {
+              e.stopPropagation()
+              goToPrevious()
+            }}
+          >
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          {/* Next Button */}
+          <button
+            className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors z-10"
+            onClick={(e) => {
+              e.stopPropagation()
+              goToNext()
+            }}
+          >
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Image Counter */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/10 px-4 py-2 rounded-full z-10">
+            <span className="text-white text-sm font-montserrat">
+              {selectedImageIndex + 1} / {galleryImages.length}
+            </span>
+          </div>
           
-          <div className="relative max-w-4xl max-h-[90vh] w-full h-full" onClick={(e) => e.stopPropagation()}>
+          {/* Image */}
+          <div className="relative max-w-5xl max-h-[90vh] w-full h-full" onClick={(e) => e.stopPropagation()}>
             <Image
-              src={selectedImage}
-              alt="Selected photo"
+              src={galleryImages[selectedImageIndex].src}
+              alt={galleryImages[selectedImageIndex].alt}
               fill
               className="object-contain"
+              sizes="100vw"
+              priority
             />
           </div>
         </div>
       )}
-
-      {/* Decorative Elements */}
-      <div className="absolute top-10 left-10 w-20 h-20 border border-accent/10 rotate-45" />
-      <div className="absolute bottom-10 right-10 w-28 h-28 border border-accent/10 rotate-12" />
     </section>
   )
 }
-

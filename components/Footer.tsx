@@ -19,7 +19,7 @@ export default function Footer() {
 
           {/* Names */}
           <p className="font-playfair text-xl text-cream/90 mb-2">
-            Trung Kiên & Ngọc Thuỷ
+            Trung Kiên & Ngọc Thùy
           </p>
 
           {/* Date */}
@@ -59,7 +59,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="font-montserrat text-xs text-cream/50">
-            © {currentYear} Trung Kiên & Ngọc Thuỷ. Made with ♥
+            © {currentYear} Trung Kiên & Ngọc Thùy. Made with ♥
           </p>
         </div>
       </div>

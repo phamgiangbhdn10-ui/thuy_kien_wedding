@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Trung Kiên & Ngọc Thuỷ - Wedding',
-  description: 'Thiệp cưới Ngô Trung Kiên & Phạm Ngọc Thuỷ - 03.01.2026',
+  title: 'Trung Kiên & Ngọc Thùy - Wedding',
+  description: 'Thiệp cưới Ngô Trung Kiên & Phạm Ngọc Thùy - 03.01.2026',
   icons: {
     icon: '/favicon.ico',
   },

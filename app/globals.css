@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -100,10 +100,10 @@ h1, h2, h3, h4, h5, h6 {
   transform: rotateX(180deg);
 }
 
-/* Leaf Pattern Background - More visible */
+/* Beautiful Flower and Heart Pattern Background */
 .leaf-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 8 Q50 25 40 50 Q30 25 40 8' fill='%236B8E23' fill-opacity='0.15'/%3E%3Cpath d='M15 45 Q22 58 15 75 Q8 58 15 45' fill='%236B8E23' fill-opacity='0.12'/%3E%3Cpath d='M65 45 Q72 58 65 75 Q58 58 65 45' fill='%236B8E23' fill-opacity='0.12'/%3E%3Ccircle cx='40' cy='65' r='2' fill='%23D4AF37' fill-opacity='0.3'/%3E%3C/svg%3E");
-  background-size: 80px 80px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='bgGrad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23D4AF37' stop-opacity='0.15'/%3E%3Cstop offset='100%25' stop-color='%23FFD700' stop-opacity='0.1'/%3E%3C/linearGradient%3E%3C/defs%3E%3C!-- Heart --%3E%3Cpath d='M30 25 Q35 15 45 20 Q50 25 50 35 Q50 45 40 55 Q30 65 30 75 Q30 65 20 55 Q10 45 10 35 Q10 25 15 20 Q25 15 30 25' fill='url(%23bgGrad1)'/%3E%3C!-- Flower 1 --%3E%3Ccircle cx='90' cy='30' r='12' fill='url(%23bgGrad1)'/%3E%3Ccircle cx='90' cy='30' r='6' fill='%23D4AF37' fill-opacity='0.2'/%3E%3Cpath d='M90 18 Q95 25 90 30 Q85 25 90 18' fill='url(%23bgGrad1)'/%3E%3Cpath d='M90 42 Q95 35 90 30 Q85 35 90 42' fill='url(%23bgGrad1)'/%3E%3Cpath d='M78 30 Q85 25 90 30 Q85 35 78 30' fill='url(%23bgGrad1)'/%3E%3Cpath d='M102 30 Q95 25 90 30 Q95 35 102 30' fill='url(%23bgGrad1)'/%3E%3C!-- Flower 2 --%3E%3Ccircle cx='60' cy='80' r='10' fill='url(%23bgGrad1)'/%3E%3Ccircle cx='60' cy='80' r='5' fill='%23D4AF37' fill-opacity='0.2'/%3E%3Ccircle cx='50' cy='75' r='8' fill='url(%23bgGrad1)'/%3E%3Ccircle cx='70' cy='75' r='8' fill='url(%23bgGrad1)'/%3E%3Ccircle cx='50' cy='85' r='8' fill='url(%23bgGrad1)'/%3E%3Ccircle cx='70' cy='85' r='8' fill='url(%23bgGrad1)'/%3E%3C/svg%3E");
+  background-size: 120px 120px;
 }
 
 /* Gold Accent Pattern */
