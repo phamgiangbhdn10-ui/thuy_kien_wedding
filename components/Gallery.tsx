@@ -28,6 +28,7 @@ const bannerImages = [
 export default function Gallery() {
   const sectionRef = useRef<HTMLElement>(null)
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const [imageLoading, setImageLoading] = useState(true)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -55,11 +56,13 @@ export default function Gallery() {
 
   const openLightbox = (src: string) => {
     setSelectedImage(src)
+    setImageLoading(true)
     document.body.style.overflow = 'hidden'
   }
 
   const closeLightbox = () => {
     setSelectedImage(null)
+    setImageLoading(false)
     document.body.style.overflow = 'auto'
   }
 
@@ -100,7 +103,11 @@ export default function Gallery() {
                 src={image.src}
                 alt={image.alt}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                {...(index === 0 ? { priority: true } : { loading: "lazy" })}
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               />
               <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/20 transition-colors duration-300" />
               <div className="absolute inset-0 border-4 border-transparent group-hover:border-accent transition-colors duration-300 rounded-2xl" />
@@ -120,7 +127,11 @@ export default function Gallery() {
                 src={image.src}
                 alt={image.alt}
                 fill
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                {...(index < 2 ? { priority: true } : { loading: "lazy" })}
                 className="object-cover transition-all duration-500 group-hover:scale-105"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               />
               {/* Hover Overlay */}
               <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/30 transition-colors duration-300" />
@@ -148,7 +159,7 @@ export default function Gallery() {
           onClick={closeLightbox}
         >
           <button
-            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-cream/10 hover:bg-cream/20 flex items-center justify-center transition-colors"
+            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-cream/10 hover:bg-cream/20 flex items-center justify-center transition-colors z-10"
             onClick={closeLightbox}
           >
             <svg className="w-6 h-6 text-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -157,11 +168,19 @@ export default function Gallery() {
           </button>
           
           <div className="relative max-w-4xl max-h-[90vh] w-full h-full" onClick={(e) => e.stopPropagation()}>
+            {imageLoading && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 border-4 border-cream/30 border-t-cream rounded-full animate-spin" />
+              </div>
+            )}
             <Image
               src={selectedImage}
               alt="Selected photo"
               fill
+              sizes="(max-width: 768px) 100vw, 90vw"
               className="object-contain"
+              onLoad={() => setImageLoading(false)}
+              priority
             />
           </div>
         </div>
