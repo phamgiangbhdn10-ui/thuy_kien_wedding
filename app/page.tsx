@@ -6,6 +6,7 @@ import Announcement from '@/components/Announcement'
 import Countdown from '@/components/Countdown'
 import Details from '@/components/Details'
 import Family from '@/components/Family'
+import Quotes from '@/components/Quotes'
 import Gallery from '@/components/Gallery'
 import RSVP from '@/components/RSVP'
 import Footer from '@/components/Footer'
@@ -62,6 +63,8 @@ export default function Home() {
         <section id="family">
           <Family />
         </section>
+
+        <Quotes />
 
         <section id="gallery">
           <Gallery />

@@ -163,10 +163,24 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
         style={{ top: 'calc(50% + 140px)' }}
       />
 
+      {/* Save the Date - Centered above envelope */}
+      <div className="absolute top-16 left-0 right-0 text-center z-30 pointer-events-none">
+        <p className="font-script text-5xl md:text-6xl text-navy font-normal tracking-wide mb-3" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
+          Save the Date
+        </p>
+        <div className="flex items-center justify-center gap-3">
+          <div className="h-px w-20 bg-gradient-to-r from-transparent to-[#D4AF37]/60" />
+          <svg className="w-3 h-3 text-[#D4AF37]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          <div className="h-px w-20 bg-gradient-to-l from-transparent to-[#D4AF37]/60" />
+        </div>
+      </div>
+
       {/* Main Envelope */}
       <div
         ref={envelopeRef}
-        className="relative cursor-pointer group"
+        className="relative cursor-pointer group mt-32"
         onClick={startAnimation}
         style={{ transformStyle: 'preserve-3d' }}
       >
@@ -253,7 +267,7 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
           </div>
         </div>
 
-        {/* Wax Seal - Clickable Button at Flap Edge (Phong Bì Chốt) */}
+        {/* Wax Seal - Red Seal with Save the Date */}
         <button
           onClick={(e) => {
             e.stopPropagation()
@@ -267,40 +281,40 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
           aria-label="Mở thiệp"
         >
           <div 
-            className="relative w-20 h-20 rounded-full flex items-center justify-center"
+            className="relative w-24 h-24 rounded-full flex flex-col items-center justify-center"
             style={{
-              background: 'linear-gradient(145deg, #2A4A6B, #192F4A)',
+              background: 'linear-gradient(145deg, #7F1D1D, #991B1B, #7F1D1D)',
               boxShadow: `
-                0 8px 20px rgba(25, 47, 74, 0.4),
-                0 0 0 2px rgba(212, 175, 55, 0.3),
+                0 8px 20px rgba(127, 29, 29, 0.6),
+                0 0 0 2px rgba(255, 255, 255, 0.15),
                 inset 0 2px 4px rgba(255,255,255,0.1),
-                inset 0 -2px 4px rgba(0,0,0,0.2)
+                inset 0 -2px 4px rgba(0,0,0,0.4)
               `
             }}
           >
             {/* Seal texture */}
-            <div className="absolute inset-1 rounded-full border border-[#D4AF37]/30" />
+            <div className="absolute inset-1 rounded-full border border-white/20" />
             <div className="absolute inset-2 rounded-full border border-white/10" />
             
             {/* Monogram */}
-            <div className="flex items-center gap-1 text-[#D4AF37] group-hover:scale-105 transition-transform">
-              <span className="font-playfair text-2xl font-semibold">K</span>
-              <span className="text-xl">&</span>
-              <span className="font-playfair text-2xl font-semibold">T</span>
+            <div className="flex items-center gap-0.5 text-white group-hover:scale-105 transition-transform">
+              <span className="font-playfair text-2xl font-bold">K</span>
+              <span className="text-base">&</span>
+              <span className="font-playfair text-2xl font-bold">T</span>
             </div>
             
             {/* Hover glow effect */}
-            <div className="absolute inset-0 rounded-full bg-[#D4AF37]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md" />
+            <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md" />
           </div>
           
-          {/* Seal drip effect */}
+          {/* Seal drip effect - dark red */}
           <div 
-            className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-3 rounded-b-full"
-            style={{ background: 'linear-gradient(180deg, #192F4A, #0F1F30)' }}
+            className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-5 h-3 rounded-b-full"
+            style={{ background: 'linear-gradient(180deg, #7F1D1D, #5C1515)' }}
           />
           
           {/* Click hint - small pulse animation */}
-          <div className="absolute inset-0 rounded-full border-2 border-[#D4AF37]/50 animate-ping opacity-75" />
+          <div className="absolute inset-0 rounded-full border-2 border-white/50 animate-ping opacity-75" />
         </button>
 
         {/* Envelope Flap */}
