@@ -16,7 +16,24 @@ export default function MusicPlayer() {
   const [currentSongIndex, setCurrentSongIndex] = useState(0)
   const [selectedSongId, setSelectedSongId] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [introCompleted, setIntroCompleted] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
+
+  // Listen for intro completion (user interaction)
+  useEffect(() => {
+    const handleUserInteraction = () => {
+      setIntroCompleted(true)
+    }
+    
+    // Listen for any user interaction
+    document.addEventListener('click', handleUserInteraction, { once: true })
+    document.addEventListener('touchstart', handleUserInteraction, { once: true })
+    
+    return () => {
+      document.removeEventListener('click', handleUserInteraction)
+      document.removeEventListener('touchstart', handleUserInteraction)
+    }
+  }, [])
 
   // Load songs from API
   useEffect(() => {
@@ -72,20 +89,33 @@ export default function MusicPlayer() {
     }
   }, [songs.length, selectedSongId])
 
-  // Auto play first song when songs are loaded (only once)
+  // Auto play first song when songs are loaded and user has interacted
   const [hasAutoPlayed, setHasAutoPlayed] = useState(false)
   useEffect(() => {
-    if (audioRef.current && songs.length > 0 && !hasAutoPlayed && !isPlaying && selectedSongId === null) {
+    if (audioRef.current && songs.length > 0 && !hasAutoPlayed && introCompleted) {
+      // Set source and load
       audioRef.current.src = songs[0].file
       audioRef.current.load()
-      audioRef.current.play().catch((error) => {
-        // Autoplay might be blocked by browser, that's okay
-        console.log('Autoplay prevented:', error)
-      })
-      setIsPlaying(true)
-      setHasAutoPlayed(true)
+      
+      // Try to play after user interaction
+      const playPromise = audioRef.current.play()
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            // Autoplay started
+            setIsPlaying(true)
+            setHasAutoPlayed(true)
+          })
+          .catch((error) => {
+            // Still blocked somehow
+            console.log('Play error:', error)
+            setIsPlaying(false)
+            setHasAutoPlayed(true)
+          })
+      }
     }
-  }, [songs.length, hasAutoPlayed, isPlaying, selectedSongId])
+  }, [songs.length, hasAutoPlayed, introCompleted])
 
   // Update audio source when song changes
   useEffect(() => {

@@ -32,7 +32,11 @@ Chúng tôi hân hạnh mời quý khách đến dự lễ thành hôn của ch�
 **Giờ:** 11:00
 
 ### 📍 Địa Điểm
-*Chi tiết địa điểm sẽ được cập nhật trong phần Details*
+**Điểm Dừng Chân Hương Nhung**  
+KM 20, QL 14 - Ấp 6  
+Xã Đồng Nai - T. Đồng Nai
+
+**Bản đồ:** [Xem trên Google Maps](https://maps.app.goo.gl/CfoSTidiRKjPgMBj8)
 
 ---
 
@@ -62,6 +66,16 @@ Chúng tôi rất mong nhận được sự xác nhận tham dự từ quý khá
 
 ---
 
+## 🎵 Nhạc Nền
+
+Thiệp cưới có tính năng phát nhạc nền tự động:
+- 🎶 Tự động quét và phát tất cả bài nhạc trong thư mục
+- 🎵 Chọn bài nhạc yêu thích từ danh sách
+- 🔄 Phát lần lượt tự động nếu không chọn bài cụ thể
+- 🎧 Điều khiển play/pause dễ dàng
+
+---
+
 ## 🎨 Thiết Kế
 
 Thiệp cưới được thiết kế với:
@@ -69,6 +83,9 @@ Thiệp cưới được thiết kế với:
 - 💫 Hiệu ứng animation mượt mà, sang trọng
 - 🌸 Hoa văn trang trí tinh tế
 - 📱 Tương thích mọi thiết bị
+- 🎭 Animation phong bì 3D độc đáo
+- 📅 Lịch đếm ngược với calendar đẹp mắt
+- 🗺️ Bản đồ tích hợp Google Maps
 
 ---
 
@@ -80,9 +97,9 @@ Chúng tôi xin chân thành cảm ơn quý khách đã dành thời gian xem th
 
 ---
 
-## 📞 Liên Hệ
+## 🌐 Truy Cập
 
-*Thông tin liên hệ sẽ được cập nhật trong phần Footer*
+**Website:** [https://wedding-kien-thuy.vercel.app](https://wedding-kien-thuy.vercel.app)
 
 ---
 
