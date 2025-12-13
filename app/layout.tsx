@@ -34,6 +34,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://wedding-kien-thuy.vercel.app',
   },
+  other: {
+    'og:image:width': '1200',
+    'og:image:height': '630',
+    'og:image:type': 'image/jpeg',
+  },
 }
 
 export default function RootLayout({
