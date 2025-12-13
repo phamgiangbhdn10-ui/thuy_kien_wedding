@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     siteName: 'Thiệp Cưới Trung Kiên & Ngọc Thùy',
     images: [
       {
-        url: '/images/60x120/c1.jpg',
+        url: 'https://wedding-kien-thuy.vercel.app/images/60x120/c1.jpg',
         width: 1200,
         height: 630,
         alt: 'Thiệp cưới Trung Kiên & Ngọc Thùy',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Trung Kiên & Ngọc Thùy - Wedding',
     description: 'Thiệp cưới Ngô Trung Kiên & Phạm Ngọc Thùy - 03.01.2026',
-    images: ['/images/60x120/c1.jpg'],
+    images: ['https://wedding-kien-thuy.vercel.app/images/60x120/c1.jpg'],
   },
 }
 
