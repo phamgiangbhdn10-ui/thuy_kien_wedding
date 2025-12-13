@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -11,6 +11,36 @@ export default function Quotes() {
   const sectionRef = useRef<HTMLElement>(null)
   const groomRef = useRef<HTMLDivElement>(null)
   const brideRef = useRef<HTMLDivElement>(null)
+  const [sparkles, setSparkles] = useState<Array<{ id: number; x: number; y: number; delay: number; duration: number }>>([])
+
+  useEffect(() => {
+    // Generate sparkles and hearts positions for background
+    const newSparkles: Array<{ id: number; x: number; y: number; delay: number; duration: number }> = []
+    
+    // Golden sparkles (20)
+    for (let i = 0; i < 20; i++) {
+      newSparkles.push({
+        id: i + 100,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        delay: Math.random() * 3,
+        duration: 2 + Math.random() * 2
+      })
+    }
+    
+    // Floating hearts (8)
+    for (let i = 0; i < 8; i++) {
+      newSparkles.push({
+        id: i + 200,
+        x: 10 + Math.random() * 80,
+        y: Math.random() * 100,
+        delay: Math.random() * 4,
+        duration: 4 + Math.random() * 3
+      })
+    }
+    
+    setSparkles(newSparkles)
+  }, [])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -39,8 +69,127 @@ export default function Quotes() {
       ref={sectionRef}
       className="relative py-20 md:py-28 bg-cream overflow-hidden"
     >
-      {/* Subtle pattern */}
-      <div className="absolute inset-0 leaf-pattern opacity-10" />
+      {/* Background gradient like envelope */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(135deg, #FAF9F6 0%, #E8E6E1 50%, #FAF9F6 100%)'
+        }}
+      />
+      
+      {/* Animated Background Particles - like envelope */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Golden sparkles */}
+        {Array.from({ length: 20 }, (_, i) => {
+          const sparkle = sparkles.find(s => s.id === i + 100) || { x: Math.random() * 100, y: Math.random() * 100, delay: Math.random() * 3, duration: 2 + Math.random() * 2 }
+          return (
+            <motion.div
+              key={`sparkle-${i}`}
+              className="absolute w-2 h-2 rounded-full"
+              style={{
+                background: 'linear-gradient(45deg, #D4AF37, #FFD700)',
+                left: `${sparkle.x}%`,
+                top: `${sparkle.y}%`,
+                boxShadow: '0 0 6px rgba(212, 175, 55, 0.6)'
+              }}
+              animate={{
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0]
+              }}
+              transition={{
+                duration: sparkle.duration,
+                delay: sparkle.delay,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            />
+          )
+        })}
+        
+        {/* Floating hearts - pink */}
+        {Array.from({ length: 8 }, (_, i) => {
+          const heart = sparkles.find(s => s.id === i + 200) || { x: 10 + Math.random() * 80, y: Math.random() * 100, delay: Math.random() * 4, duration: 4 + Math.random() * 3 }
+          return (
+            <motion.div
+              key={`heart-${i}`}
+              className="absolute text-2xl opacity-20"
+              style={{
+                left: `${heart.x}%`,
+                top: `${heart.y}%`
+              }}
+              animate={{
+                y: [0, -30, 0],
+                rotate: [0, 10, -10, 0],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{
+                duration: heart.duration,
+                delay: heart.delay,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            >
+              💕
+            </motion.div>
+          )
+        })}
+
+        {/* Decorative corner flourishes */}
+        <svg className="absolute top-8 left-8 w-32 h-32 text-accent/20" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+        <svg className="absolute top-8 right-8 w-32 h-32 text-accent/20 rotate-90" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+        <svg className="absolute bottom-8 left-8 w-32 h-32 text-accent/20 -rotate-90" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+        <svg className="absolute bottom-8 right-8 w-32 h-32 text-accent/20 rotate-180" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+      </div>
+
+      <motion.div
+        className="absolute top-16 left-16 w-14 h-14 opacity-10"
+        animate={{
+          y: [0, -20, 0],
+          rotate: [0, 10, -10, 0]
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: 'easeInOut'
+        }}
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full text-[#D4AF37]">
+          <path d="M50 30 Q60 20 70 30 Q70 40 60 50 Q50 60 50 70 Q50 60 40 50 Q30 40 30 30 Q40 20 50 30" fill="currentColor" />
+        </svg>
+      </motion.div>
+      <motion.div
+        className="absolute bottom-16 right-16 w-12 h-12 opacity-10"
+        animate={{
+          y: [0, -15, 0],
+          rotate: [0, -15, 15, 0]
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay: 1
+        }}
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full text-[#D4AF37]">
+          <circle cx="50" cy="30" r="12" fill="currentColor" />
+          <circle cx="50" cy="70" r="12" fill="currentColor" />
+          <circle cx="30" cy="50" r="12" fill="currentColor" />
+          <circle cx="70" cy="50" r="12" fill="currentColor" />
+          <circle cx="50" cy="50" r="8" fill="#FFD700" opacity="0.6" />
+        </svg>
+      </motion.div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Title */}

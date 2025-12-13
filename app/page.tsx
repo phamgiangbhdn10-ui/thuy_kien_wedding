@@ -12,6 +12,8 @@ import Gallery from '@/components/Gallery'
 import RSVP from '@/components/RSVP'
 import Footer from '@/components/Footer'
 import ParticlesBackground from '@/components/ParticlesBackground'
+import FloatingDecorations from '@/components/FloatingDecorations'
+import Sparkles from '@/components/Sparkles'
 
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true)
@@ -71,6 +73,9 @@ export default function Home() {
           <ParticlesBackground />
         </div>
       )}
+
+      {/* Floating Decorations */}
+      {!showIntro && <FloatingDecorations />}
 
       {/* Envelope Intro Animation */}
       {showIntro && <EnvelopeIntro onComplete={handleIntroComplete} />}

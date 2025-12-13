@@ -18,7 +18,37 @@ export default function Countdown() {
   const sectionRef = useRef<HTMLElement>(null)
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 })
   const [prevTimeLeft, setPrevTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+  const [sparkles, setSparkles] = useState<Array<{ id: number; x: number; y: number; delay: number; duration: number }>>([])
   const targetDate = new Date('2026-01-03T11:00:00').getTime()
+
+  useEffect(() => {
+    // Generate sparkles and hearts positions for background
+    const newSparkles: Array<{ id: number; x: number; y: number; delay: number; duration: number }> = []
+    
+    // Golden sparkles (20)
+    for (let i = 0; i < 20; i++) {
+      newSparkles.push({
+        id: i + 100,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        delay: Math.random() * 3,
+        duration: 2 + Math.random() * 2
+      })
+    }
+    
+    // Floating hearts (8)
+    for (let i = 0; i < 8; i++) {
+      newSparkles.push({
+        id: i + 200,
+        x: 10 + Math.random() * 80,
+        y: Math.random() * 100,
+        delay: Math.random() * 4,
+        duration: 4 + Math.random() * 3
+      })
+    }
+    
+    setSparkles(newSparkles)
+  }, [])
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -145,9 +175,85 @@ export default function Countdown() {
       ref={sectionRef}
       className="relative py-24 md:py-36 overflow-hidden"
       style={{
-        background: 'linear-gradient(180deg, #FAF9F6 0%, #F0EDE6 50%, #FAF9F6 100%)'
+        background: 'linear-gradient(135deg, #FAF9F6 0%, #E8E6E1 50%, #FAF9F6 100%)'
       }}
     >
+      {/* Animated Background Particles - like envelope */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Golden sparkles */}
+        {Array.from({ length: 20 }, (_, i) => {
+          const sparkle = sparkles.find(s => s.id === i + 100) || { x: Math.random() * 100, y: Math.random() * 100, delay: Math.random() * 3, duration: 2 + Math.random() * 2 }
+          return (
+            <motion.div
+              key={`sparkle-${i}`}
+              className="absolute w-2 h-2 rounded-full"
+              style={{
+                background: 'linear-gradient(45deg, #D4AF37, #FFD700)',
+                left: `${sparkle.x}%`,
+                top: `${sparkle.y}%`,
+                boxShadow: '0 0 6px rgba(212, 175, 55, 0.6)'
+              }}
+              animate={{
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0]
+              }}
+              transition={{
+                duration: sparkle.duration,
+                delay: sparkle.delay,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            />
+          )
+        })}
+        
+        {/* Floating hearts - pink */}
+        {Array.from({ length: 8 }, (_, i) => {
+          const heart = sparkles.find(s => s.id === i + 200) || { x: 10 + Math.random() * 80, y: Math.random() * 100, delay: Math.random() * 4, duration: 4 + Math.random() * 3 }
+          return (
+            <motion.div
+              key={`heart-${i}`}
+              className="absolute text-2xl opacity-20"
+              style={{
+                left: `${heart.x}%`,
+                top: `${heart.y}%`
+              }}
+              animate={{
+                y: [0, -30, 0],
+                rotate: [0, 10, -10, 0],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{
+                duration: heart.duration,
+                delay: heart.delay,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            >
+              💕
+            </motion.div>
+          )
+        })}
+
+        {/* Decorative corner flourishes */}
+        <svg className="absolute top-8 left-8 w-32 h-32 text-accent/20" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+        <svg className="absolute top-8 right-8 w-32 h-32 text-accent/20 rotate-90" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+        <svg className="absolute bottom-8 left-8 w-32 h-32 text-accent/20 -rotate-90" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+        <svg className="absolute bottom-8 right-8 w-32 h-32 text-accent/20 rotate-180" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+      </div>
+      
       {/* Background Decorations */}
       <div className="absolute inset-0">
         <motion.div 
@@ -172,11 +278,6 @@ export default function Countdown() {
             ease: "linear"
           }}
         />
-        
-        {/* Floating elements */}
-        <div className="gold-pattern absolute inset-0 opacity-40" style={{
-          animation: 'float 15s ease-in-out infinite'
-        }} />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">

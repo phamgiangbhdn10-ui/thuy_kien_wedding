@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
+import Sparkles from './Sparkles'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -88,6 +89,9 @@ export default function Gallery() {
       ref={sectionRef}
       className="relative py-28 md:py-36 bg-cream overflow-hidden"
     >
+      {/* Sparkles background */}
+      <Sparkles count={20} />
+
       <div className="container mx-auto px-4">
         {/* Section Title */}
         <div className="gallery-title text-center mb-16">

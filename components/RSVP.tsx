@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Confetti from 'react-confetti'
+import Sparkles from './Sparkles'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -14,6 +16,38 @@ export default function RSVP() {
     name: '',
     message: ''
   })
+  const [showConfetti, setShowConfetti] = useState(false)
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
+  const [sparkles, setSparkles] = useState<Array<{ id: number; x: number; y: number; delay: number; duration: number }>>([])
+
+  useEffect(() => {
+    // Generate sparkles and hearts positions for background
+    const newSparkles: Array<{ id: number; x: number; y: number; delay: number; duration: number }> = []
+    
+    // Golden sparkles (20)
+    for (let i = 0; i < 20; i++) {
+      newSparkles.push({
+        id: i + 100,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        delay: Math.random() * 3,
+        duration: 2 + Math.random() * 2
+      })
+    }
+    
+    // Floating hearts (8)
+    for (let i = 0; i < 8; i++) {
+      newSparkles.push({
+        id: i + 200,
+        x: 10 + Math.random() * 80,
+        y: Math.random() * 100,
+        delay: Math.random() * 4,
+        duration: 4 + Math.random() * 3
+      })
+    }
+    
+    setSparkles(newSparkles)
+  }, [])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -36,8 +70,21 @@ export default function RSVP() {
     return () => ctx.revert()
   }, [])
 
+  useEffect(() => {
+    const updateWindowSize = () => {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight })
+    }
+    updateWindowSize()
+    window.addEventListener('resize', updateWindowSize)
+    return () => window.removeEventListener('resize', updateWindowSize)
+  }, [])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Show confetti
+    setShowConfetti(true)
+    setTimeout(() => setShowConfetti(false), 3000)
     
     // Format message for Messenger
     const messengerMessage = formData.name 
@@ -70,9 +117,100 @@ export default function RSVP() {
       ref={sectionRef}
       className="relative py-20 md:py-32 bg-cream overflow-hidden"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="leaf-pattern w-full h-full" />
+      {/* Confetti Effect */}
+      {showConfetti && (
+        <Confetti
+          width={windowSize.width}
+          height={windowSize.height}
+          recycle={false}
+          numberOfPieces={200}
+          colors={['#D4AF37', '#E8C547', '#FFD700', '#6B8E23', '#8AB52D']}
+        />
+      )}
+
+
+      {/* Background gradient like envelope */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(135deg, #FAF9F6 0%, #E8E6E1 50%, #FAF9F6 100%)'
+        }}
+      />
+      
+      {/* Animated Background Particles - like envelope */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Golden sparkles */}
+        {Array.from({ length: 20 }, (_, i) => {
+          const sparkle = sparkles.find(s => s.id === i + 100) || { x: Math.random() * 100, y: Math.random() * 100, delay: Math.random() * 3, duration: 2 + Math.random() * 2 }
+          return (
+            <motion.div
+              key={`sparkle-${i}`}
+              className="absolute w-2 h-2 rounded-full"
+              style={{
+                background: 'linear-gradient(45deg, #D4AF37, #FFD700)',
+                left: `${sparkle.x}%`,
+                top: `${sparkle.y}%`,
+                boxShadow: '0 0 6px rgba(212, 175, 55, 0.6)'
+              }}
+              animate={{
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0]
+              }}
+              transition={{
+                duration: sparkle.duration,
+                delay: sparkle.delay,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            />
+          )
+        })}
+        
+        {/* Floating hearts - pink */}
+        {Array.from({ length: 8 }, (_, i) => {
+          const heart = sparkles.find(s => s.id === i + 200) || { x: 10 + Math.random() * 80, y: Math.random() * 100, delay: Math.random() * 4, duration: 4 + Math.random() * 3 }
+          return (
+            <motion.div
+              key={`heart-${i}`}
+              className="absolute text-2xl opacity-20"
+              style={{
+                left: `${heart.x}%`,
+                top: `${heart.y}%`
+              }}
+              animate={{
+                y: [0, -30, 0],
+                rotate: [0, 10, -10, 0],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{
+                duration: heart.duration,
+                delay: heart.delay,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            >
+              💕
+            </motion.div>
+          )
+        })}
+
+        {/* Decorative corner flourishes */}
+        <svg className="absolute top-8 left-8 w-32 h-32 text-accent/20" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+        <svg className="absolute top-8 right-8 w-32 h-32 text-accent/20 rotate-90" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+        <svg className="absolute bottom-8 left-8 w-32 h-32 text-accent/20 -rotate-90" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+        <svg className="absolute bottom-8 right-8 w-32 h-32 text-accent/20 rotate-180" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -94,11 +232,31 @@ export default function RSVP() {
         </div>
 
         {/* Message Form */}
-        <form
+        <motion.form
           ref={formRef}
           onSubmit={handleSubmit}
-          className="max-w-xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-navy/10"
+          className="max-w-xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-navy/10 relative overflow-hidden"
+          whileHover={{ scale: 1.01 }}
+          transition={{ duration: 0.3 }}
         >
+          {/* Animated border glow */}
+          <motion.div
+            className="absolute -inset-0.5 rounded-2xl opacity-0 hover:opacity-100 transition-opacity"
+            style={{
+              background: 'linear-gradient(45deg, #D4AF37, #E8C547, #FFD700, #E8C547, #D4AF37)',
+              backgroundSize: '200% 200%',
+              filter: 'blur(8px)',
+              zIndex: -1
+            }}
+            animate={{
+              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: 'linear'
+            }}
+          />
           <div className="space-y-6">
             {/* Name Field */}
             <div>
@@ -144,7 +302,7 @@ export default function RSVP() {
               Gửi Lời Chúc qua Messenger
             </button>
           </div>
-        </form>
+        </motion.form>
 
         {/* Contact Info */}
         <div className="text-center mt-12">

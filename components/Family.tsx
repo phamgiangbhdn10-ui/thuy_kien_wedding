@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
@@ -9,6 +10,36 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function Family() {
   const sectionRef = useRef<HTMLElement>(null)
+  const [sparkles, setSparkles] = useState<Array<{ id: number; x: number; y: number; delay: number; duration: number }>>([])
+
+  useEffect(() => {
+    // Generate sparkles and hearts positions for background
+    const newSparkles: Array<{ id: number; x: number; y: number; delay: number; duration: number }> = []
+    
+    // Golden sparkles (20)
+    for (let i = 0; i < 20; i++) {
+      newSparkles.push({
+        id: i + 100,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        delay: Math.random() * 3,
+        duration: 2 + Math.random() * 2
+      })
+    }
+    
+    // Floating hearts (8)
+    for (let i = 0; i < 8; i++) {
+      newSparkles.push({
+        id: i + 200,
+        x: 10 + Math.random() * 80,
+        y: Math.random() * 100,
+        delay: Math.random() * 4,
+        duration: 4 + Math.random() * 3
+      })
+    }
+    
+    setSparkles(newSparkles)
+  }, [])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -36,8 +67,131 @@ export default function Family() {
       ref={sectionRef}
       className="relative py-20 md:py-28 bg-cream overflow-hidden"
     >
-      {/* Subtle pattern */}
-      <div className="absolute inset-0 leaf-pattern opacity-15" />
+      {/* Background gradient like envelope */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(135deg, #FAF9F6 0%, #E8E6E1 50%, #FAF9F6 100%)'
+        }}
+      />
+      
+      {/* Animated Background Particles - like envelope */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Golden sparkles */}
+        {Array.from({ length: 20 }, (_, i) => {
+          const sparkle = sparkles.find(s => s.id === i + 100) || { x: Math.random() * 100, y: Math.random() * 100, delay: Math.random() * 3, duration: 2 + Math.random() * 2 }
+          return (
+            <motion.div
+              key={`sparkle-${i}`}
+              className="absolute w-2 h-2 rounded-full"
+              style={{
+                background: 'linear-gradient(45deg, #D4AF37, #FFD700)',
+                left: `${sparkle.x}%`,
+                top: `${sparkle.y}%`,
+                boxShadow: '0 0 6px rgba(212, 175, 55, 0.6)'
+              }}
+              animate={{
+                opacity: [0, 1, 0],
+                scale: [0, 1, 0]
+              }}
+              transition={{
+                duration: sparkle.duration,
+                delay: sparkle.delay,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            />
+          )
+        })}
+        
+        {/* Floating hearts - pink */}
+        {Array.from({ length: 8 }, (_, i) => {
+          const heart = sparkles.find(s => s.id === i + 200) || { x: 10 + Math.random() * 80, y: Math.random() * 100, delay: Math.random() * 4, duration: 4 + Math.random() * 3 }
+          return (
+            <motion.div
+              key={`heart-${i}`}
+              className="absolute text-2xl opacity-20"
+              style={{
+                left: `${heart.x}%`,
+                top: `${heart.y}%`
+              }}
+              animate={{
+                y: [0, -30, 0],
+                rotate: [0, 10, -10, 0],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{
+                duration: heart.duration,
+                delay: heart.delay,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            >
+              💕
+            </motion.div>
+          )
+        })}
+
+        {/* Decorative corner flourishes */}
+        <svg className="absolute top-8 left-8 w-32 h-32 text-accent/20" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+        <svg className="absolute top-8 right-8 w-32 h-32 text-accent/20 rotate-90" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+        <svg className="absolute bottom-8 left-8 w-32 h-32 text-accent/20 -rotate-90" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+        <svg className="absolute bottom-8 right-8 w-32 h-32 text-accent/20 rotate-180" viewBox="0 0 100 100">
+          <path d="M10 90 Q10 10 90 10" stroke="currentColor" strokeWidth="2" fill="none" />
+          <circle cx="90" cy="10" r="4" fill="currentColor" />
+        </svg>
+      </div>
+
+      {/* Floating decorative elements */}
+      <motion.div
+        className="absolute top-10 right-10 w-20 h-20 opacity-10"
+        animate={{
+          y: [0, -25, 0],
+          rotate: [0, 15, -15, 0],
+          scale: [1, 1.15, 1]
+        }}
+        transition={{
+          duration: 7,
+          repeat: Infinity,
+          ease: 'easeInOut'
+        }}
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full text-[#D4AF37]">
+          <path d="M50 30 Q60 20 70 30 Q70 40 60 50 Q50 60 50 70 Q50 60 40 50 Q30 40 30 30 Q40 20 50 30" fill="currentColor" />
+        </svg>
+      </motion.div>
+      <motion.div
+        className="absolute bottom-10 left-10 w-16 h-16 opacity-10"
+        animate={{
+          y: [0, -20, 0],
+          rotate: [0, -360],
+          scale: [1, 1.1, 1]
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: 'linear',
+          delay: 1
+        }}
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full text-[#D4AF37]">
+          <circle cx="50" cy="30" r="12" fill="currentColor" />
+          <circle cx="50" cy="70" r="12" fill="currentColor" />
+          <circle cx="30" cy="50" r="12" fill="currentColor" />
+          <circle cx="70" cy="50" r="12" fill="currentColor" />
+          <circle cx="50" cy="50" r="8" fill="currentColor" opacity="0.6" />
+        </svg>
+      </motion.div>
+
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="family-content max-w-4xl mx-auto">
@@ -162,8 +316,22 @@ export default function Family() {
                 </p>
 
                 {/* Avatar - Above name */}
-                <div className="relative mb-4 md:mb-6">
-                  <div className="relative w-24 h-24 md:w-32 md:h-32">
+                <motion.div
+                  className="relative mb-4 md:mb-6"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className="relative w-24 h-24 md:w-32 md:h-32"
+                    animate={{
+                      y: [0, -10, 0]
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: 'easeInOut'
+                    }}
+                  >
                     {/* Outer glow effect */}
                     <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-[#D4AF37]/20 via-[#E8C547]/15 to-[#D4AF37]/20 blur-xl" style={{ borderRadius: '50%' }} />
                     
@@ -240,14 +408,33 @@ export default function Family() {
                     </div>
                     
                     {/* Subtle inner glow with continuous pulse */}
-                    <div className="absolute -inset-0.5 rounded-full border border-[#D4AF37]/20 glow-pulse" style={{ borderRadius: '50%' }} />
-                  </div>
-                </div>
+                    <motion.div
+                      className="absolute -inset-0.5 rounded-full border border-[#D4AF37]/20"
+                      style={{ borderRadius: '50%' }}
+                      animate={{
+                        boxShadow: [
+                          '0 0 10px rgba(212, 175, 55, 0.3)',
+                          '0 0 30px rgba(212, 175, 55, 0.6), 0 0 50px rgba(212, 175, 55, 0.4)',
+                          '0 0 10px rgba(212, 175, 55, 0.3)'
+                        ]
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: 'easeInOut'
+                      }}
+                    />
+                  </motion.div>
+                </motion.div>
 
                 {/* Groom name - Script font */}
-                <p className="font-script text-2xl md:text-5xl text-[#D4AF37]">
+                <motion.p
+                  className="font-script text-2xl md:text-5xl text-[#D4AF37]"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
                   Trung Kiên
-                </p>
+                </motion.p>
               </div>
 
               {/* Nhà Gái */}
@@ -270,8 +457,23 @@ export default function Family() {
                 </p>
 
                 {/* Avatar - Above name */}
-                <div className="relative mb-4 md:mb-6">
-                  <div className="relative w-24 h-24 md:w-32 md:h-32">
+                <motion.div
+                  className="relative mb-4 md:mb-6"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className="relative w-24 h-24 md:w-32 md:h-32"
+                    animate={{
+                      y: [0, -10, 0]
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                      delay: 0.5
+                    }}
+                  >
                     {/* Outer glow effect */}
                     <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-[#D4AF37]/20 via-[#E8C547]/15 to-[#D4AF37]/20 blur-xl" style={{ borderRadius: '50%' }} />
                     
@@ -348,14 +550,34 @@ export default function Family() {
                     </div>
                     
                     {/* Subtle inner glow with continuous pulse */}
-                    <div className="absolute -inset-0.5 rounded-full border border-[#D4AF37]/20 glow-pulse" style={{ borderRadius: '50%' }} />
-                  </div>
-                </div>
+                    <motion.div
+                      className="absolute -inset-0.5 rounded-full border border-[#D4AF37]/20"
+                      style={{ borderRadius: '50%' }}
+                      animate={{
+                        boxShadow: [
+                          '0 0 10px rgba(212, 175, 55, 0.3)',
+                          '0 0 30px rgba(212, 175, 55, 0.6), 0 0 50px rgba(212, 175, 55, 0.4)',
+                          '0 0 10px rgba(212, 175, 55, 0.3)'
+                        ]
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                        delay: 0.5
+                      }}
+                    />
+                  </motion.div>
+                </motion.div>
 
                 {/* Bride name - Script font */}
-                <p className="font-script text-2xl md:text-5xl text-[#D4AF37]">
+                <motion.p
+                  className="font-script text-2xl md:text-5xl text-[#D4AF37]"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
                   Ngọc Thùy
-                </p>
+                </motion.p>
               </div>
             </div>
 
@@ -372,16 +594,45 @@ export default function Family() {
             </p>
 
             {/* Photo */}
-            <div className="flex justify-center mb-8">
-              <div className="relative w-64 h-[512px] md:w-80 md:h-[640px] rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+            <motion.div
+              className="flex justify-center mb-8"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <motion.div
+                className="relative w-64 h-[512px] md:w-80 md:h-[640px] rounded-2xl overflow-hidden shadow-xl border-4 border-white"
+                whileHover={{ scale: 1.05, rotateY: 5 }}
+                transition={{ duration: 0.3 }}
+                style={{ perspective: '1000px' }}
+              >
                 <Image
                   src="/images/60x120/60x120 (1).jpg"
                   alt="Wedding couple"
                   fill
                   className="object-cover"
                 />
-              </div>
-            </div>
+                {/* Animated border glow */}
+                <motion.div
+                  className="absolute -inset-1 rounded-2xl opacity-0 hover:opacity-100 transition-opacity"
+                  style={{
+                    background: 'linear-gradient(45deg, #D4AF37, #E8C547, #FFD700, #E8C547, #D4AF37)',
+                    backgroundSize: '200% 200%',
+                    filter: 'blur(10px)',
+                    zIndex: -1
+                  }}
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: 'linear'
+                  }}
+                />
+              </motion.div>
+            </motion.div>
 
             {/* Message */}
             <div className="text-center">
