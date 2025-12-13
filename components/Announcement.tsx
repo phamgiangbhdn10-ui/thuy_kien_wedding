@@ -85,20 +85,8 @@ export default function Announcement() {
     >
       {/* Background Image - No overlay on main area */}
       <div ref={bgRef} className="absolute inset-0 -top-20">
-        {/* Mobile: use mb.png */}
         <div 
-          className="absolute inset-0 bg-no-repeat bg-cover md:hidden"
-          style={{
-            backgroundImage: 'url(/images/mb.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center center',
-            transform: 'scale(1)',
-            transformOrigin: 'center center',
-          }}
-        />
-        {/* Desktop: use original image */}
-        <div 
-          className="hidden md:block absolute inset-0 bg-no-repeat bg-cover"
+          className="absolute inset-0 bg-no-repeat bg-cover"
           style={{
             backgroundImage: 'url(/images/15x21/DSC01337.jpg)',
             backgroundSize: 'cover',
