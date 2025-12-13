@@ -295,34 +295,34 @@ export default function Family() {
             </div>
 
             {/* Two columns - Always side by side with avatars */}
-            <div className="grid grid-cols-2 gap-4 md:gap-8 mb-10">
+            <div className="grid grid-cols-2 gap-2 md:gap-8 mb-10">
               {/* Nhà Trai */}
-              <div className="text-center flex flex-col items-center">
-                <h3 className="font-playfair text-lg md:text-3xl text-navy mb-3 md:mb-6 font-medium">
+              <div className="text-center flex flex-col items-center px-1">
+                <h3 className="font-playfair text-base md:text-3xl text-navy mb-2 md:mb-6 font-medium">
                   Nhà Trai
                 </h3>
                 
-                <div className="space-y-0.5 md:space-y-1 mb-3 md:mb-6">
-                  <p className="font-montserrat text-xs md:text-base text-navy/70">
+                <div className="space-y-0.5 md:space-y-1 mb-2 md:mb-6">
+                  <p className="font-montserrat text-[10px] md:text-base text-navy/70 leading-tight">
                     Ông: <span className="font-medium text-navy">Ngô Đăng Chính</span>
                   </p>
-                  <p className="font-montserrat text-xs md:text-base text-navy/70">
+                  <p className="font-montserrat text-[10px] md:text-base text-navy/70 leading-tight">
                     Bà: <span className="font-medium text-navy">Bùi Thị Hà</span>
                   </p>
                 </div>
 
-                <p className="font-montserrat text-[10px] md:text-sm text-navy/50 mb-4 md:mb-8">
+                <p className="font-montserrat text-[9px] md:text-sm text-navy/50 mb-2 md:mb-8 leading-tight">
                   Ấp 6 - Đông Tân<br className="md:hidden" /> T. Đồng Nai
                 </p>
 
                 {/* Avatar - Above name */}
                 <motion.div
-                  className="relative mb-4 md:mb-6"
+                  className="relative mb-2 md:mb-6"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
                   <motion.div
-                    className="relative w-24 h-24 md:w-32 md:h-32"
+                    className="relative w-20 h-20 md:w-32 md:h-32"
                     animate={{
                       y: [0, -10, 0]
                     }}
@@ -336,7 +336,7 @@ export default function Family() {
                     <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-[#D4AF37]/20 via-[#E8C547]/15 to-[#D4AF37]/20 blur-xl" style={{ borderRadius: '50%' }} />
                     
                     {/* Decorative SVG border frame */}
-                    <svg className="absolute -inset-3 w-full h-full slow-rotate" style={{ borderRadius: '50%' }} viewBox="0 0 200 200">
+                    <svg className="absolute -inset-3 w-full h-full" style={{ borderRadius: '50%' }} viewBox="0 0 200 200">
                       <defs>
                         <linearGradient id="goldGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
                           <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.6" />
@@ -407,21 +407,12 @@ export default function Family() {
                       />
                     </div>
                     
-                    {/* Subtle inner glow with continuous pulse */}
-                    <motion.div
+                    {/* Subtle inner glow - static */}
+                    <div
                       className="absolute -inset-0.5 rounded-full border border-[#D4AF37]/20"
-                      style={{ borderRadius: '50%' }}
-                      animate={{
-                        boxShadow: [
-                          '0 0 10px rgba(212, 175, 55, 0.3)',
-                          '0 0 30px rgba(212, 175, 55, 0.6), 0 0 50px rgba(212, 175, 55, 0.4)',
-                          '0 0 10px rgba(212, 175, 55, 0.3)'
-                        ]
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: 'easeInOut'
+                      style={{ 
+                        borderRadius: '50%',
+                        boxShadow: '0 0 15px rgba(212, 175, 55, 0.3)'
                       }}
                     />
                   </motion.div>
@@ -429,7 +420,7 @@ export default function Family() {
 
                 {/* Groom name - Script font */}
                 <motion.p
-                  className="font-script text-2xl md:text-5xl text-[#D4AF37]"
+                  className="font-script text-xl md:text-5xl text-[#D4AF37] leading-tight"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -438,32 +429,32 @@ export default function Family() {
               </div>
 
               {/* Nhà Gái */}
-              <div className="text-center flex flex-col items-center">
-                <h3 className="font-playfair text-lg md:text-3xl text-navy mb-3 md:mb-6 font-medium">
+              <div className="text-center flex flex-col items-center px-1">
+                <h3 className="font-playfair text-base md:text-3xl text-navy mb-2 md:mb-6 font-medium">
                   Nhà Gái
                 </h3>
                 
-                <div className="space-y-0.5 md:space-y-1 mb-3 md:mb-6">
-                  <p className="font-montserrat text-xs md:text-base text-navy/70">
+                <div className="space-y-0.5 md:space-y-1 mb-2 md:mb-6">
+                  <p className="font-montserrat text-[10px] md:text-base text-navy/70 leading-tight">
                     Ông: <span className="font-medium text-navy">Phạm Thanh Tâm</span>
                   </p>
-                  <p className="font-montserrat text-xs md:text-base text-navy/70 invisible">
+                  <p className="font-montserrat text-[10px] md:text-base text-navy/70 invisible">
                     &nbsp;
                   </p>
                 </div>
 
-                <p className="font-montserrat text-[10px] md:text-sm text-navy/50 mb-4 md:mb-8">
+                <p className="font-montserrat text-[9px] md:text-sm text-navy/50 mb-2 md:mb-8 leading-tight">
                   Thôn 1 - Nghĩa Trung<br className="md:hidden" /> T. Đồng Nai
                 </p>
 
                 {/* Avatar - Above name */}
                 <motion.div
-                  className="relative mb-4 md:mb-6"
+                  className="relative mb-2 md:mb-6"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
                   <motion.div
-                    className="relative w-24 h-24 md:w-32 md:h-32"
+                    className="relative w-20 h-20 md:w-32 md:h-32"
                     animate={{
                       y: [0, -10, 0]
                     }}
@@ -478,7 +469,7 @@ export default function Family() {
                     <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-[#D4AF37]/20 via-[#E8C547]/15 to-[#D4AF37]/20 blur-xl" style={{ borderRadius: '50%' }} />
                     
                     {/* Decorative SVG border frame */}
-                    <svg className="absolute -inset-3 w-full h-full slow-rotate" style={{ borderRadius: '50%' }} viewBox="0 0 200 200">
+                    <svg className="absolute -inset-3 w-full h-full" style={{ borderRadius: '50%' }} viewBox="0 0 200 200">
                       <defs>
                         <linearGradient id="goldGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
                           <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.6" />
@@ -572,7 +563,7 @@ export default function Family() {
 
                 {/* Bride name - Script font */}
                 <motion.p
-                  className="font-script text-2xl md:text-5xl text-[#D4AF37]"
+                  className="font-script text-xl md:text-5xl text-[#D4AF37] leading-tight"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -608,10 +599,12 @@ export default function Family() {
                 style={{ perspective: '1000px' }}
               >
                 <Image
-                  src="/images/60x120/60x120 (1).jpg"
+                  src="/images/60x120/c1.jpg"
                   alt="Wedding couple"
                   fill
                   className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 256px, 320px"
                 />
                 {/* Animated border glow */}
                 <motion.div

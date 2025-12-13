@@ -116,14 +116,14 @@ export default function Countdown() {
     }, [value, prevValue])
 
     return (
-      <div className="countdown-item flex flex-col items-center">
+      <div className="countdown-item flex flex-col items-center flex-shrink-0">
         <div 
           className="relative"
           style={{ perspective: '1000px' }}
         >
           <div
             ref={cardRef}
-            className="relative w-24 h-28 md:w-32 md:h-36 rounded-2xl overflow-hidden"
+            className="relative w-20 h-24 md:w-32 md:h-36 rounded-2xl overflow-hidden"
             style={{ 
               transformStyle: 'preserve-3d',
               background: 'linear-gradient(145deg, #FFFFFF 0%, #F8F6F0 100%)',
@@ -296,7 +296,7 @@ export default function Countdown() {
         </div>
 
         {/* Countdown Cards */}
-        <div className="flex justify-center items-center gap-4 md:gap-8 flex-wrap">
+        <div className="flex justify-center items-center gap-2 md:gap-8 flex-nowrap overflow-x-auto pb-4 md:pb-0">
           <FlipCard value={timeLeft.days} label="Ngày" prevValue={prevTimeLeft.days} />
           
           <div className="hidden md:flex flex-col gap-4 py-4">

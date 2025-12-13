@@ -214,49 +214,88 @@ export default function RSVP() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Section Title */}
-        <div className="text-center mb-12">
-          <h2 className="font-playfair text-3xl md:text-4xl text-navy mb-4">
-            Gửi Lời Chúc
-          </h2>
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-accent/50" />
-            <svg className="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-accent/50" />
-          </div>
-          <p className="font-montserrat text-sm text-navy/60 max-w-md mx-auto">
-            Gửi lời chúc đến cô dâu chú rể qua Messenger
-          </p>
-        </div>
-
-        {/* Message Form */}
-        <motion.form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className="max-w-xl mx-auto bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-navy/10 relative overflow-hidden"
-          whileHover={{ scale: 1.01 }}
-          transition={{ duration: 0.3 }}
-        >
-          {/* Animated border glow */}
-          <motion.div
-            className="absolute -inset-0.5 rounded-2xl opacity-0 hover:opacity-100 transition-opacity"
+        {/* Elegant Card Container */}
+        <div className="max-w-4xl mx-auto">
+          <div 
+            className="relative rounded-3xl p-8 md:p-12 overflow-hidden"
             style={{
-              background: 'linear-gradient(45deg, #D4AF37, #E8C547, #FFD700, #E8C547, #D4AF37)',
-              backgroundSize: '200% 200%',
-              filter: 'blur(8px)',
-              zIndex: -1
+              background: 'linear-gradient(145deg, #FFFFFF 0%, #FDF9F3 50%, #FAF6EE 100%)',
+              boxShadow: '0 20px 40px rgba(25, 47, 74, 0.12), 0 0 0 1px rgba(25, 47, 74, 0.1)'
             }}
-            animate={{
-              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: 'linear'
-            }}
-          />
+          >
+            {/* VIP Decorative corner elements - Ornate */}
+            <div className="absolute top-6 left-6 w-12 h-12">
+              <svg viewBox="0 0 48 48" className="w-full h-full text-[#D4AF37]/50">
+                <path d="M0 0 L48 0 L48 48" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                <circle cx="48" cy="0" r="3" fill="currentColor" />
+                <circle cx="0" cy="48" r="3" fill="currentColor" />
+                <path d="M8 8 L16 8 M8 8 L8 16" stroke="currentColor" strokeWidth="1" />
+              </svg>
+            </div>
+            <div className="absolute top-6 right-6 w-12 h-12 rotate-90">
+              <svg viewBox="0 0 48 48" className="w-full h-full text-[#D4AF37]/50">
+                <path d="M0 0 L48 0 L48 48" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                <circle cx="48" cy="0" r="3" fill="currentColor" />
+                <circle cx="0" cy="48" r="3" fill="currentColor" />
+                <path d="M8 8 L16 8 M8 8 L8 16" stroke="currentColor" strokeWidth="1" />
+              </svg>
+            </div>
+            <div className="absolute bottom-6 left-6 w-12 h-12 -rotate-90">
+              <svg viewBox="0 0 48 48" className="w-full h-full text-[#D4AF37]/50">
+                <path d="M0 0 L48 0 L48 48" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                <circle cx="48" cy="0" r="3" fill="currentColor" />
+                <circle cx="0" cy="48" r="3" fill="currentColor" />
+                <path d="M8 8 L16 8 M8 8 L8 16" stroke="currentColor" strokeWidth="1" />
+              </svg>
+            </div>
+            <div className="absolute bottom-6 right-6 w-12 h-12 rotate-180">
+              <svg viewBox="0 0 48 48" className="w-full h-full text-[#D4AF37]/50">
+                <path d="M0 0 L48 0 L48 48" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                <circle cx="48" cy="0" r="3" fill="currentColor" />
+                <circle cx="0" cy="48" r="3" fill="currentColor" />
+                <path d="M8 8 L16 8 M8 8 L8 16" stroke="currentColor" strokeWidth="1" />
+              </svg>
+            </div>
+            
+            {/* VIP Ornamental border - Double line with pattern */}
+            <div className="absolute inset-0 pointer-events-none">
+              {/* Outer border */}
+              <div className="absolute inset-2 rounded-3xl border border-[#D4AF37]/30" />
+              {/* Inner border */}
+              <div className="absolute inset-4 rounded-3xl border border-[#D4AF37]/20" />
+              
+              {/* Decorative dots at corners */}
+              <div className="absolute top-2 left-2 w-2 h-2 rounded-full bg-[#D4AF37]/40" />
+              <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#D4AF37]/40" />
+              <div className="absolute bottom-2 left-2 w-2 h-2 rounded-full bg-[#D4AF37]/40" />
+              <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-[#D4AF37]/40" />
+            </div>
+
+            {/* Section Title */}
+            <div className="text-center mb-12">
+              <h2 className="font-script text-5xl md:text-6xl lg:text-7xl text-[#D4AF37] mb-4">
+                Gửi Lời Chúc
+              </h2>
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent to-[#D4AF37]" />
+                <svg className="w-5 h-5 text-[#D4AF37]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <div className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-[#D4AF37]" />
+              </div>
+              <p className="font-montserrat text-sm text-navy/60 max-w-md mx-auto">
+                Gửi lời chúc đến cô dâu chú rể qua Messenger
+              </p>
+            </div>
+
+            {/* Message Form */}
+            <motion.form
+              ref={formRef}
+              onSubmit={handleSubmit}
+              className="max-w-xl mx-auto relative"
+              whileHover={{ scale: 1.01 }}
+              transition={{ duration: 0.3 }}
+            >
           <div className="space-y-6">
             {/* Name Field */}
             <div>
@@ -294,7 +333,7 @@ export default function RSVP() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="glow-button w-full py-4 bg-accent text-cream font-montserrat font-medium uppercase tracking-wider rounded-lg transition-all duration-300 hover:bg-accent-dark flex items-center justify-center gap-2"
+              className="glow-button w-full py-4 bg-gradient-to-r from-[#D4AF37] to-[#E8C547] text-navy font-montserrat font-medium uppercase tracking-wider rounded-lg transition-all duration-300 hover:from-[#C4A030] hover:to-[#D4AF37] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -304,24 +343,35 @@ export default function RSVP() {
           </div>
         </motion.form>
 
-        {/* Contact Info */}
-        <div className="text-center mt-12">
-          <p className="font-montserrat text-sm text-navy/60 mb-2">
-            Nếu có thắc mắc, vui lòng liên hệ:
-          </p>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
-            <a href="tel:0397813774" className="flex items-center gap-2 text-accent hover:text-accent-dark transition-colors">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            {/* Divider */}
+            <div className="flex items-center justify-center gap-4 my-10">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent to-[#D4AF37]/30" />
+              <svg className="w-5 h-5 text-[#D4AF37]" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
               </svg>
-              <span className="font-montserrat">Chú Rể: 0397 813 774</span>
-            </a>
-            <a href="tel:0965542727" className="flex items-center gap-2 text-accent hover:text-accent-dark transition-colors">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              <span className="font-montserrat">Cô Dâu: 0965 542 727</span>
-            </a>
+              <div className="h-px flex-1 bg-gradient-to-l from-transparent to-[#D4AF37]/30" />
+            </div>
+
+            {/* Contact Info */}
+            <div className="text-center">
+              <p className="font-montserrat text-sm text-navy/60 mb-4">
+                Nếu có thắc mắc, vui lòng liên hệ:
+              </p>
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+                <a href="tel:0397813774" className="flex items-center gap-2 text-[#D4AF37] hover:text-[#C4A030] transition-colors font-montserrat">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <span>Chú Rể: 0397 813 774</span>
+                </a>
+                <a href="tel:0965542727" className="flex items-center gap-2 text-[#D4AF37] hover:text-[#C4A030] transition-colors font-montserrat">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <span>Cô Dâu: 0965 542 727</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
