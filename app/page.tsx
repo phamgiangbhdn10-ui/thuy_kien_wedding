@@ -22,26 +22,12 @@ export default function Home() {
   useEffect(() => {
     setIsLoaded(true)
     
-    // Preload important images
-    const preloadImages = [
-      '/images/60x120/c1.jpg',
-      '/images/15x21/DSC00869.jpg',
-      '/images/15x21/DSC01111.jpg',
-      '/images/15x21/DSC01337.jpg',
-      '/images/15x21/DSC01342.jpg',
-      '/images/15x21/DSC01468.jpg',
-      '/images/15x21/DSC01513.jpg',
-      '/images/15x21/DSC01639.jpg',
-      '/images/15x21/DSC01660.jpg',
-    ]
-    
-    preloadImages.forEach((src) => {
-      const link = document.createElement('link')
-      link.rel = 'preload'
-      link.as = 'image'
-      link.href = src
-      document.head.appendChild(link)
-    })
+    // Only preload critical image (thư mời)
+    const link = document.createElement('link')
+    link.rel = 'preload'
+    link.as = 'image'
+    link.href = '/images/60x120/c1.jpg'
+    document.head.appendChild(link)
   }, [])
 
   const handleIntroComplete = () => {

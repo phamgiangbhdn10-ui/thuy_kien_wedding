@@ -404,6 +404,8 @@ export default function Family() {
                         fill
                         className="object-cover rounded-full"
                         style={{ borderRadius: '50%' }}
+                        quality={85}
+                        sizes="(max-width: 768px) 80px, 128px"
                       />
                     </div>
                     
@@ -537,6 +539,8 @@ export default function Family() {
                         fill
                         className="object-cover rounded-full"
                         style={{ borderRadius: '50%' }}
+                        quality={85}
+                        sizes="(max-width: 768px) 80px, 128px"
                       />
                     </div>
                     
@@ -604,7 +608,7 @@ export default function Family() {
                   fill
                   className="object-cover"
                   priority
-                  unoptimized
+                  quality={90}
                   sizes="(max-width: 768px) 256px, 320px"
                 />
                 {/* Animated border glow */}

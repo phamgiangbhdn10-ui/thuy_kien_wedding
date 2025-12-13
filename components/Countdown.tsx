@@ -109,6 +109,241 @@ export default function Countdown() {
     return () => ctx.revert()
   }, [])
 
+  const WeddingCalendar = () => {
+    const weddingDate = new Date('2026-01-03')
+    const today = new Date()
+    const currentMonth = weddingDate.getMonth()
+    const currentYear = weddingDate.getFullYear()
+    
+    // Get first day of month and number of days
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay()
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
+    
+    // Check if today is in the same month
+    const isTodayInMonth = today.getMonth() === currentMonth && today.getFullYear() === currentYear
+    const todayDate = isTodayInMonth ? today.getDate() : null
+    
+    const weddingDay = weddingDate.getDate()
+    
+    const weekDays = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7']
+    const monthNames = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 
+                       'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
+    
+    const days = []
+    // Empty cells for days before month starts
+    for (let i = 0; i < firstDay; i++) {
+      days.push({ type: 'empty', index: i })
+    }
+    // Days of the month
+    for (let i = 1; i <= daysInMonth; i++) {
+      days.push({ type: 'day', value: i, index: firstDay + i - 1 })
+    }
+    
+    return (
+      <div className="relative max-w-lg w-full mx-auto">
+        <div 
+          className="relative rounded-3xl p-8 md:p-10 overflow-hidden"
+          style={{
+            background: 'linear-gradient(145deg, #FFFFFF 0%, #FDF9F3 50%, #FAF6EE 100%)',
+            boxShadow: '0 25px 50px rgba(25, 47, 74, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.2), inset 0 1px 0 rgba(255,255,255,0.9)'
+          }}
+        >
+          {/* Classic ornate decorative corners */}
+          <div className="absolute top-4 left-4 w-24 h-24 text-[#D4AF37]/30">
+            <svg viewBox="0 0 100 100" className="w-full h-full">
+              <path d="M0 0 L100 0 L100 100" stroke="currentColor" strokeWidth="1.5" fill="none" />
+              <circle cx="100" cy="0" r="3" fill="currentColor" />
+              <circle cx="0" cy="100" r="3" fill="currentColor" />
+              <path d="M10 10 Q20 5 30 10 Q35 20 30 30 Q20 35 10 30 Q5 20 10 10" stroke="currentColor" strokeWidth="1" fill="none" />
+              <path d="M15 15 Q22 12 28 15 Q30 20 28 25 Q22 28 15 25 Q12 20 15 15" stroke="currentColor" strokeWidth="0.8" fill="none" opacity="0.6" />
+              <circle cx="20" cy="20" r="1.5" fill="currentColor" />
+            </svg>
+          </div>
+          <div className="absolute top-4 right-4 w-24 h-24 text-[#D4AF37]/30 scale-x-[-1]">
+            <svg viewBox="0 0 100 100" className="w-full h-full">
+              <path d="M0 0 L100 0 L100 100" stroke="currentColor" strokeWidth="1.5" fill="none" />
+              <circle cx="100" cy="0" r="3" fill="currentColor" />
+              <circle cx="0" cy="100" r="3" fill="currentColor" />
+              <path d="M10 10 Q20 5 30 10 Q35 20 30 30 Q20 35 10 30 Q5 20 10 10" stroke="currentColor" strokeWidth="1" fill="none" />
+              <path d="M15 15 Q22 12 28 15 Q30 20 28 25 Q22 28 15 25 Q12 20 15 15" stroke="currentColor" strokeWidth="0.8" fill="none" opacity="0.6" />
+              <circle cx="20" cy="20" r="1.5" fill="currentColor" />
+            </svg>
+          </div>
+          <div className="absolute bottom-4 left-4 w-24 h-24 text-[#D4AF37]/30 scale-y-[-1]">
+            <svg viewBox="0 0 100 100" className="w-full h-full">
+              <path d="M0 0 L100 0 L100 100" stroke="currentColor" strokeWidth="1.5" fill="none" />
+              <circle cx="100" cy="0" r="3" fill="currentColor" />
+              <circle cx="0" cy="100" r="3" fill="currentColor" />
+              <path d="M10 10 Q20 5 30 10 Q35 20 30 30 Q20 35 10 30 Q5 20 10 10" stroke="currentColor" strokeWidth="1" fill="none" />
+              <path d="M15 15 Q22 12 28 15 Q30 20 28 25 Q22 28 15 25 Q12 20 15 15" stroke="currentColor" strokeWidth="0.8" fill="none" opacity="0.6" />
+              <circle cx="20" cy="20" r="1.5" fill="currentColor" />
+            </svg>
+          </div>
+          <div className="absolute bottom-4 right-4 w-24 h-24 text-[#D4AF37]/30 scale-[-1]">
+            <svg viewBox="0 0 100 100" className="w-full h-full">
+              <path d="M0 0 L100 0 L100 100" stroke="currentColor" strokeWidth="1.5" fill="none" />
+              <circle cx="100" cy="0" r="3" fill="currentColor" />
+              <circle cx="0" cy="100" r="3" fill="currentColor" />
+              <path d="M10 10 Q20 5 30 10 Q35 20 30 30 Q20 35 10 30 Q5 20 10 10" stroke="currentColor" strokeWidth="1" fill="none" />
+              <path d="M15 15 Q22 12 28 15 Q30 20 28 25 Q22 28 15 25 Q12 20 15 15" stroke="currentColor" strokeWidth="0.8" fill="none" opacity="0.6" />
+              <circle cx="20" cy="20" r="1.5" fill="currentColor" />
+            </svg>
+          </div>
+          
+          {/* Classic ornate border pattern */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-2 rounded-3xl border-2 border-[#D4AF37]/25" />
+            <div className="absolute inset-4 rounded-3xl border border-[#D4AF37]/15" />
+            {/* Swirl pattern along border */}
+            <div className="absolute inset-3 rounded-3xl overflow-hidden">
+              {Array.from({ length: 12 }).map((_, i) => (
+                <div
+                  key={`swirl-${i}`}
+                  className="absolute"
+                  style={{
+                    left: i % 3 === 0 ? '0' : i % 3 === 1 ? '50%' : 'auto',
+                    right: i % 3 === 2 ? '0' : 'auto',
+                    top: `${(i * 8.33) % 100}%`,
+                    transform: `translate(-50%, -50%) ${i % 3 === 2 ? 'scaleX(-1)' : ''}`
+                  }}
+                >
+                  <svg className="w-5 h-5 text-[#D4AF37]/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                    <path d="M12 2 Q8 6, 12 10 Q16 6, 12 2" />
+                    <path d="M12 10 Q8 14, 12 18 Q16 14, 12 10" />
+                  </svg>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Decorative side swirl patterns */}
+          <div className="absolute left-3 top-1/2 -translate-y-1/2 flex flex-col gap-6">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <svg key={`left-swirl-${i}`} className="w-5 h-5 text-[#D4AF37]/25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                <path d="M12 2 Q8 6, 12 10 Q16 6, 12 2" />
+                <path d="M12 10 Q8 14, 12 18 Q16 14, 12 10" />
+              </svg>
+            ))}
+          </div>
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col gap-6">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <svg key={`right-swirl-${i}`} className="w-5 h-5 text-[#D4AF37]/25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                <path d="M12 2 Q8 6, 12 10 Q16 6, 12 2" />
+                <path d="M12 10 Q8 14, 12 18 Q16 14, 12 10" />
+              </svg>
+            ))}
+          </div>
+          
+          {/* Month Header with ornate design */}
+          <div className="text-center mb-8 relative z-10">
+            <div className="relative inline-block">
+              <h3 className="font-script text-3xl md:text-4xl text-[#D4AF37] mb-3 relative z-10">
+                {monthNames[currentMonth]} {currentYear}
+              </h3>
+              {/* Decorative underline */}
+              <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent" />
+              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-24 h-0.5 bg-[#D4AF37]/60" />
+            </div>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <div className="h-px w-20 md:w-32 bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-[#D4AF37]" />
+              <div className="relative">
+                <svg className="w-5 h-5 text-[#D4AF37]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-3 h-3 rounded-full bg-[#D4AF37]/20" />
+                </div>
+              </div>
+              <div className="h-px w-20 md:w-32 bg-gradient-to-l from-transparent via-[#D4AF37]/50 to-[#D4AF37]" />
+            </div>
+          </div>
+          
+          {/* Week Days Header with decorative style */}
+          <div className="grid grid-cols-7 gap-2 mb-4 relative z-10">
+            {weekDays.map((day, index) => (
+              <div
+                key={`weekday-${index}`}
+                className="text-center py-2 font-playfair text-sm md:text-base font-semibold text-[#D4AF37]/90 relative"
+              >
+                {day}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-[#D4AF37]/30" />
+              </div>
+            ))}
+          </div>
+          
+          {/* Calendar Grid */}
+          <div className="grid grid-cols-7 gap-2 relative z-10">
+            {days.map((item) => {
+              if (item.type === 'empty') {
+                return <div key={`empty-${item.index}`} className="aspect-square" />
+              }
+              
+              const day = item.value
+              const isWeddingDay = day === weddingDay
+              const isToday = day === todayDate
+              
+              return (
+                <div key={`day-${item.index}`} className="relative">
+                  <div
+                    className={`relative aspect-square flex items-center justify-center rounded-xl transition-colors ${
+                      isWeddingDay
+                        ? 'bg-transparent text-navy'
+                        : isToday
+                        ? 'bg-[#D4AF37]/15 text-navy border-2 border-[#D4AF37]'
+                        : 'text-navy/70 hover:bg-cream-dark hover:text-navy border border-transparent hover:border-[#D4AF37]/20'
+                    }`}
+                  >
+                    {isWeddingDay ? (
+                      <div className="relative w-full h-full flex items-center justify-center">
+                        {/* Elegant pulsing heart */}
+                        <motion.div
+                          className="relative z-10"
+                          animate={{
+                            scale: [1, 1.1, 1],
+                          }}
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: 'easeInOut'
+                          }}
+                        >
+                          {/* Soft glow behind */}
+                          <div className="absolute inset-0 flex items-center justify-center -z-10">
+                            <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-red-500/20 blur-lg" />
+                          </div>
+                          {/* Beautiful heart icon */}
+                          <svg 
+                            className="w-12 h-12 md:w-14 md:h-14 text-red-500" 
+                            viewBox="0 0 24 24" 
+                            fill="currentColor"
+                            style={{
+                              filter: 'drop-shadow(0 2px 4px rgba(239, 68, 68, 0.3))'
+                            }}
+                          >
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                          </svg>
+                        </motion.div>
+                      </div>
+                    ) : isToday ? (
+                      <span className="font-playfair text-base md:text-lg font-semibold">{day}</span>
+                    ) : (
+                      <span className="font-playfair text-sm md:text-base">{day}</span>
+                    )}
+                  </div>
+                  {isToday && (
+                    <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] md:text-xs font-playfair font-semibold text-[#D4AF37] whitespace-nowrap">
+                      Today
+                    </span>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   const FlipCard = ({ value, label, prevValue }: { value: number; label: string; prevValue: number }) => {
     const cardRef = useRef<HTMLDivElement>(null)
     
@@ -325,6 +560,11 @@ export default function Countdown() {
           </div>
           
           <FlipCard value={timeLeft.seconds} label="Giây" prevValue={prevTimeLeft.seconds} />
+        </div>
+
+        {/* Calendar */}
+        <div className="mt-16 flex justify-center">
+          <WeddingCalendar />
         </div>
 
       </div>

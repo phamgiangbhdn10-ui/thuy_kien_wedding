@@ -24,12 +24,31 @@ export default function Gallery() {
   const sectionRef = useRef<HTMLElement>(null)
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null)
 
-  // Preload gallery images in the background
+  // Lazy load gallery images only when section is visible
   useEffect(() => {
-    galleryImages.forEach((image) => {
-      const img = new window.Image()
-      img.src = image.src
-    })
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Load images progressively when section is visible
+            galleryImages.forEach((image, index) => {
+              setTimeout(() => {
+                const img = new window.Image()
+                img.src = image.src
+              }, index * 100) // Stagger loading
+            })
+            observer.disconnect()
+          }
+        })
+      },
+      { rootMargin: '200px' } // Start loading 200px before visible
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
@@ -149,6 +168,7 @@ export default function Gallery() {
                   sizes="(max-width: 768px) 50vw, 25vw"
                   className="object-cover"
                   loading="lazy"
+                  quality={85}
                 />
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0"
