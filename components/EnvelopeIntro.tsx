@@ -12,6 +12,7 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
   const envelopeRef = useRef<HTMLDivElement>(null)
   const flapRef = useRef<HTMLDivElement>(null)
   const shadowRef = useRef<HTMLDivElement>(null)
+  const waxSealRef = useRef<HTMLButtonElement>(null)
   const [isAnimating, setIsAnimating] = useState(false)
 
   const startAnimation = () => {
@@ -32,20 +33,32 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
     // Lift envelope slightly
     tl.to(envelopeRef.current, {
       y: -20,
-      duration: 0.3,
+      duration: 0.4,
       ease: 'power2.out'
     })
+
+    // Wax seal disappears first - smooth fade out with scale
+    tl.to(waxSealRef.current, {
+      opacity: 0,
+      scale: 0.3,
+      y: -10,
+      duration: 0.6,
+      ease: 'power2.in'
+    }, '-=0.2') // Start slightly before envelope lift completes
+
+    // Small pause after wax seal disappears
+    tl.to({}, { duration: 0.3 })
 
     // Open the flap with 3D rotation - smooth and natural
     tl.to(flapRef.current, {
       rotateX: 180,
       z: 20,
-      duration: 1.5,
-      ease: 'power2.inOut'
+      duration: 1.8,
+      ease: 'power3.inOut'
     })
 
-    // Hold for a moment
-    tl.to({}, { duration: 0.5 })
+    // Hold for a moment to see the opened envelope
+    tl.to({}, { duration: 0.6 })
 
     // Fade out envelope
     tl.to(envelopeRef.current, {
@@ -270,6 +283,7 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
 
         {/* Wax Seal - Red Seal with Save the Date */}
         <button
+          ref={waxSealRef}
           onClick={(e) => {
             e.stopPropagation()
             startAnimation()

@@ -371,7 +371,7 @@ export default function Details() {
             {/* Map Link */}
             <div className="text-center">
               <a
-                href="https://maps.google.com/maps?q=Diem+Dung+Chan+Huong+Nhung+Dong+Nai"
+                href="https://maps.app.goo.gl/3HT4Dc41cmuk5Eo27"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-accent to-accent-light text-cream font-montserrat text-sm font-medium hover:shadow-lg transition-all duration-300"

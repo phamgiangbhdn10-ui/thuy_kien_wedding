@@ -14,6 +14,7 @@ import Footer from '@/components/Footer'
 import ParticlesBackground from '@/components/ParticlesBackground'
 import FloatingDecorations from '@/components/FloatingDecorations'
 import Sparkles from '@/components/Sparkles'
+import MusicPlayer from '@/components/MusicPlayer'
 
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true)
@@ -122,26 +123,8 @@ export default function Home() {
         <Footer />
       </motion.div>
 
-      {/* Floating Music Button with animation */}
-      <motion.button
-        initial={{ scale: 0, rotate: -180 }}
-        animate={{ scale: 1, rotate: 0 }}
-        transition={{ delay: 1, type: 'spring', stiffness: 200 }}
-        whileHover={{ scale: 1.1, rotate: 5 }}
-        whileTap={{ scale: 0.95 }}
-        className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-gradient-to-br from-[#D4AF37] to-accent text-white shadow-xl hover:shadow-2xl transition-shadow flex items-center justify-center"
-        aria-label="Toggle Music"
-      >
-        <motion.svg
-          className="w-6 h-6"
-          fill="currentColor"
-          viewBox="0 0 24 24"
-          animate={{ rotate: [0, 10, -10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-        >
-          <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-        </motion.svg>
-      </motion.button>
+      {/* Music Player */}
+      <MusicPlayer />
     </main>
   )
 }
