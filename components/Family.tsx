@@ -295,14 +295,14 @@ export default function Family() {
             </div>
 
             {/* Two columns - Always side by side with avatars */}
-            <div className="grid grid-cols-2 gap-2 md:gap-8 mb-10">
+            <div className="grid grid-cols-2 gap-3 md:gap-8 mb-10">
               {/* Nhà Trai */}
-              <div className="text-center flex flex-col items-center px-1">
-                <h3 className="font-playfair text-base md:text-3xl text-navy mb-2 md:mb-6 font-medium">
+              <div className="text-center flex flex-col items-center">
+                <h3 className="font-playfair text-base md:text-3xl text-navy mb-3 md:mb-6 font-medium">
                   Nhà Trai
                 </h3>
                 
-                <div className="space-y-0.5 md:space-y-1 mb-2 md:mb-6">
+                <div className="space-y-1 md:space-y-1 mb-3 md:mb-6">
                   <p className="font-montserrat text-xs md:text-base text-navy/70 leading-tight">
                     Ông: <span className="font-medium text-navy">Ngô Đăng Chính</span>
                   </p>
@@ -311,13 +311,13 @@ export default function Family() {
                   </p>
                 </div>
 
-                <p className="font-montserrat text-[9px] md:text-sm text-navy/50 mb-4 md:mb-8 leading-tight">
+                <p className="font-montserrat text-[10px] md:text-sm text-navy/50 mb-5 md:mb-8 leading-tight">
                   Ấp 6 - Đông Tân<br className="md:hidden" /> T. Đồng Nai
                 </p>
 
                 {/* Avatar - Above name */}
                 <motion.div
-                  className="relative mb-4 md:mb-6"
+                  className="relative mb-5 md:mb-6"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -429,12 +429,12 @@ export default function Family() {
               </div>
 
               {/* Nhà Gái */}
-              <div className="text-center flex flex-col items-center px-1">
-                <h3 className="font-playfair text-base md:text-3xl text-navy mb-2 md:mb-6 font-medium">
+              <div className="text-center flex flex-col items-center">
+                <h3 className="font-playfair text-base md:text-3xl text-navy mb-3 md:mb-6 font-medium">
                   Nhà Gái
                 </h3>
                 
-                <div className="space-y-0.5 md:space-y-1 mb-2 md:mb-6">
+                <div className="space-y-1 md:space-y-1 mb-3 md:mb-6">
                   <p className="font-montserrat text-xs md:text-base text-navy/70 leading-tight">
                     Ông: <span className="font-medium text-navy">Phạm Thanh Tâm</span>
                   </p>
@@ -443,13 +443,13 @@ export default function Family() {
                   </p>
                 </div>
 
-                <p className="font-montserrat text-[9px] md:text-sm text-navy/50 mb-4 md:mb-8 leading-tight">
+                <p className="font-montserrat text-[10px] md:text-sm text-navy/50 mb-5 md:mb-8 leading-tight">
                   Thôn 1 - Nghĩa Trung<br className="md:hidden" /> T. Đồng Nai
                 </p>
 
                 {/* Avatar - Above name */}
                 <motion.div
-                  className="relative mb-4 md:mb-6"
+                  className="relative mb-5 md:mb-6"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.3 }}
                 >
@@ -604,6 +604,7 @@ export default function Family() {
                   fill
                   className="object-cover"
                   priority
+                  unoptimized
                   sizes="(max-width: 768px) 256px, 320px"
                 />
                 {/* Animated border glow */}

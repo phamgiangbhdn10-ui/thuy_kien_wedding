@@ -66,16 +66,22 @@ export default function Countdown() {
       return { days: 0, hours: 0, minutes: 0, seconds: 0 }
     }
 
-    setTimeLeft(calculateTimeLeft())
-    setPrevTimeLeft(calculateTimeLeft())
+    // Initialize with current time
+    const initialTime = calculateTimeLeft()
+    setTimeLeft(initialTime)
+    setPrevTimeLeft(initialTime)
 
     const timer = setInterval(() => {
-      setPrevTimeLeft(timeLeft)
-      setTimeLeft(calculateTimeLeft())
+      setTimeLeft((current) => {
+        const newTime = calculateTimeLeft()
+        // Update prevTimeLeft with the current value before updating
+        setPrevTimeLeft(current)
+        return newTime
+      })
     }, 1000)
 
     return () => clearInterval(timer)
-  }, [targetDate, timeLeft])
+  }, [targetDate])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
