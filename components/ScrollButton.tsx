@@ -59,25 +59,25 @@ export default function ScrollButton() {
   if (!isVisible) return null
 
   return (
-    <div className="fixed bottom-8 left-0 right-0 z-[100] flex justify-center items-center pointer-events-none">
+    <div className="fixed bottom-2 left-0 right-0 z-[100] flex justify-center items-center pointer-events-none">
       <motion.button
         onClick={scrollToNext}
-        className="flex flex-col items-center justify-center gap-1 text-[#D4AF37] hover:text-[#E8C547] transition-colors pointer-events-auto cursor-pointer bg-transparent border-none outline-none focus:outline-none"
+        className="flex flex-col items-center justify-center gap-1 text-white/50 hover:text-white/70 transition-colors pointer-events-auto cursor-pointer bg-transparent border-none outline-none focus:outline-none"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         type="button"
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 0.5, y: 0 }}
         transition={{ delay: 0.5 }}
       >
       {/* Mouse icon with scroll indicator */}
       <motion.div
-        className="flex flex-col items-center gap-2"
-        animate={{ y: [0, 5, 0] }}
+        className="flex flex-col items-center gap-1"
+        animate={{ y: [0, 4, 0] }}
         transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
       >
         <motion.svg
-          className="w-10 h-10"
+          className="w-6 h-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -93,8 +93,8 @@ export default function ScrollButton() {
         
         {/* Text hint */}
         <motion.span
-          className="text-xs font-montserrat text-[#D4AF37] opacity-80 whitespace-nowrap"
-          animate={{ opacity: [0.6, 1, 0.6] }}
+          className="text-[10px] font-montserrat text-white/50 whitespace-nowrap"
+          animate={{ opacity: [0.4, 0.6, 0.4] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         >
           Kéo xuống

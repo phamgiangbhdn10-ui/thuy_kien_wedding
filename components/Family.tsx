@@ -312,7 +312,7 @@ export default function Family() {
                 </div>
 
                 <p className="font-montserrat text-[10px] md:text-sm text-navy/50 mb-5 md:mb-8 leading-tight">
-                  Ấp 6 - Đông Tân<br className="md:hidden" /> T. Đồng Nai
+                  Ấp 6 - Đồng Tâm<br className="md:hidden" /> T. Đồng Nai
                 </p>
 
                 {/* Avatar - Above name */}
@@ -593,7 +593,7 @@ export default function Family() {
                 style={{ perspective: '1000px' }}
               >
                 <Image
-                  src="/images/60x120/c1.jpg"
+                  src="/images/60x120/c2.jpg"
                   alt="Wedding couple"
                   fill
                   className="object-cover"

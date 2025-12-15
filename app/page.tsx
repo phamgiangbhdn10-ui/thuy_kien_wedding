@@ -28,7 +28,7 @@ export default function Home() {
     const link = document.createElement('link')
     link.rel = 'preload'
     link.as = 'image'
-    link.href = '/images/60x120/c1.jpg'
+    link.href = '/images/60x120/c2.jpg'
     document.head.appendChild(link)
   }, [])
 

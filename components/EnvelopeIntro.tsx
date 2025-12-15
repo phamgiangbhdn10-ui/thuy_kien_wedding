@@ -23,49 +23,54 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
       onComplete: () => {
         gsap.to(containerRef.current, {
           opacity: 0,
-          duration: 0.8,
-          ease: 'power2.inOut',
+          duration: 1,
+          ease: 'power1.inOut',
+          force3D: true,
           onComplete: onComplete
         })
       }
     })
 
-    // Lift envelope slightly
+    // Lift envelope slightly - smoother
     tl.to(envelopeRef.current, {
       y: -20,
-      duration: 0.4,
-      ease: 'power2.out'
+      duration: 0.6,
+      ease: 'power1.out',
+      force3D: true
     })
 
-    // Wax seal disappears first - smooth fade out with scale
+    // Wax seal disappears first - smoother fade out
     tl.to(waxSealRef.current, {
       opacity: 0,
       scale: 0.3,
       y: -10,
-      duration: 0.6,
-      ease: 'power2.in'
-    }, '-=0.2') // Start slightly before envelope lift completes
+      duration: 0.8,
+      ease: 'power1.in',
+      force3D: true
+    }, '-=0.3') // Start slightly before envelope lift completes
 
     // Small pause after wax seal disappears
-    tl.to({}, { duration: 0.3 })
+    tl.to({}, { duration: 0.2 })
 
-    // Open the flap with 3D rotation - smooth and natural
+    // Open the flap with 3D rotation - much smoother
     tl.to(flapRef.current, {
       rotateX: 180,
       z: 20,
-      duration: 1.8,
-      ease: 'power3.inOut'
+      duration: 2.2,
+      ease: 'power1.inOut',
+      force3D: true
     })
 
     // Hold for a moment to see the opened envelope
-    tl.to({}, { duration: 0.6 })
+    tl.to({}, { duration: 0.4 })
 
-    // Fade out envelope
+    // Fade out envelope - smoother
     tl.to(envelopeRef.current, {
       opacity: 0,
       scale: 0.95,
-      duration: 0.8,
-      ease: 'power2.inOut'
+      duration: 1,
+      ease: 'power1.inOut',
+      force3D: true
     })
   }
 
@@ -73,38 +78,41 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
     // Initial animation sequence - smooth and elegant
     const tl = gsap.timeline()
     
-    // Envelope gracefully fades in and settles
+    // Envelope gracefully fades in and settles - smoother
     tl.fromTo(envelopeRef.current,
       { y: -60, opacity: 0, scale: 0.9 },
       { 
         y: 0, 
         opacity: 1, 
         scale: 1, 
-        duration: 1.4, 
-        ease: 'power3.out'
+        duration: 1.6, 
+        ease: 'power1.out',
+        force3D: true
       }
     )
 
-    // Shadow smoothly appears
+    // Shadow smoothly appears - smoother
     tl.fromTo(shadowRef.current,
       { scaleX: 0.3, opacity: 0 },
       { 
         scaleX: 1, 
         opacity: 0.3, 
-        duration: 1,
-        ease: 'power2.out'
+        duration: 1.2,
+        ease: 'power1.out',
+        force3D: true
       },
-      '-=1.2'
+      '-=1.4'
     )
 
-    // Gentle floating animation - very subtle
+    // Gentle floating animation - smoother
     gsap.to(envelopeRef.current, {
       y: -5,
-      duration: 2.5,
+      duration: 3,
       repeat: -1,
       yoyo: true,
       ease: 'sine.inOut',
-      delay: 1.4
+      delay: 1.6,
+      force3D: true
     })
   }, [])
 
@@ -348,7 +356,8 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
             transformStyle: 'preserve-3d',
             zIndex: 15,
             transformOrigin: '50% 0%',
-            transform: 'rotateX(0deg)'
+            transform: 'rotateX(0deg)',
+            willChange: 'transform'
           }}
         >
           <div className="relative w-full h-[142px]" style={{ transformStyle: 'preserve-3d', marginTop: '-2px' }}>

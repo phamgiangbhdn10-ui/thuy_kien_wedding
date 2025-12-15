@@ -17,7 +17,7 @@ Chúng tôi hân hạnh mời quý khách đến dự lễ thành hôn của ch�
 ### 👨 Nhà Trai
 - **Ông:** Ngô Đăng Chính
 - **Bà:** Bùi Thị Hà
-- **Địa chỉ:** Ấp 6 - Đông Tân, T. Đồng Nai
+- **Địa chỉ:** Ấp 6 - Đồng Tâm, T. Đồng Nai
 
 ### 👩 Nhà Gái
 - **Ông:** Phạm Thanh Tâm

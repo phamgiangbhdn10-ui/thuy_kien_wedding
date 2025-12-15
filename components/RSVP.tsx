@@ -331,15 +331,34 @@ export default function RSVP() {
             </div>
 
             {/* Submit Button */}
-            <button
+            <motion.button
               type="submit"
-              className="glow-button w-full py-4 bg-gradient-to-r from-[#D4AF37] to-[#E8C547] text-navy font-montserrat font-medium uppercase tracking-wider rounded-lg transition-all duration-300 hover:from-[#C4A030] hover:to-[#D4AF37] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="relative w-full py-4 bg-gradient-to-r from-[#0084FF] via-[#0084FF] to-[#0066CC] text-white font-montserrat font-semibold uppercase tracking-wider rounded-xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-2xl overflow-hidden group"
+              style={{
+                boxShadow: '0 10px 30px rgba(0, 132, 255, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset'
+              }}
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              {/* Shine effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              
+              {/* Messenger Icon */}
+              <svg className="w-6 h-6 relative z-10" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 4.925 0 11c0 2.133.713 4.117 1.945 5.742L0 24l7.84-2.138c1.05.29 2.16.448 3.16.448 6.627 0 12-4.925 12-11S18.627 0 12 0zm0 19.077c-1.126 0-2.23-.178-3.298-.52L4.5 20.5l1.72-4.842C5.2 14.172 4.5 12.66 4.5 11c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8z"/>
               </svg>
-              Gửi Lời Chúc qua Messenger
-            </button>
+              
+              {/* Text */}
+              <span className="relative z-10">Gửi Lời Chúc qua Messenger</span>
+              
+              {/* Ripple effect on click */}
+              <motion.div
+                className="absolute inset-0 rounded-xl bg-white/20"
+                initial={{ scale: 0, opacity: 0 }}
+                whileTap={{ scale: 1.5, opacity: [0.5, 0] }}
+                transition={{ duration: 0.4 }}
+              />
+            </motion.button>
           </div>
         </motion.form>
 
