@@ -19,7 +19,7 @@ export default function Countdown() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 })
   const [prevTimeLeft, setPrevTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 })
   const [sparkles, setSparkles] = useState<Array<{ id: number; x: number; y: number; delay: number; duration: number }>>([])
-  const targetDate = new Date('2026-01-03T11:00:00').getTime()
+  const targetDate = new Date('2026-01-02T11:00:00').getTime()
 
   useEffect(() => {
     // Generate sparkles and hearts positions for background
@@ -110,7 +110,7 @@ export default function Countdown() {
   }, [])
 
   const WeddingCalendar = () => {
-    const weddingDate = new Date('2026-01-03')
+    const weddingDate = new Date('2026-01-02')
     const today = new Date()
     const currentMonth = weddingDate.getMonth()
     const currentYear = weddingDate.getFullYear()

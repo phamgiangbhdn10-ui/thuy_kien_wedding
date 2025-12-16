@@ -191,7 +191,7 @@ export default function Announcement() {
           <div className="flex flex-col items-center gap-0">
             {/* Groom name - left aligned, rotated */}
             <p 
-              className="font-script text-5xl md:text-8xl lg:text-9xl text-white self-start ml-4 md:ml-12 -rotate-3"
+              className="font-script text-5xl md:text-6xl lg:text-7xl text-white self-start ml-4 md:ml-12 -rotate-3"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
             >
               Trung Kiên
@@ -199,7 +199,7 @@ export default function Announcement() {
             
             {/* & symbol - stylized with floating animation */}
             <motion.p 
-              className="font-script text-6xl md:text-9xl lg:text-[10rem] text-[#FFD700] my-1"
+              className="font-script text-6xl md:text-7xl lg:text-8xl text-[#FFD700] my-1"
               style={{ 
                 textShadow: '0 2px 20px rgba(0,0,0,0.6)'
               }}
@@ -219,10 +219,10 @@ export default function Announcement() {
             
             {/* Bride name - right aligned, rotated opposite */}
             <p 
-              className="font-script text-5xl md:text-8xl lg:text-9xl text-white self-end mr-4 md:mr-12 rotate-3"
+              className="font-script text-5xl md:text-6xl lg:text-7xl text-white self-end mr-4 md:mr-12 rotate-3"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
             >
-              Ngọc Thùy
+              Ngọc Thuỳ
             </p>
           </div>
         </div>
@@ -245,7 +245,7 @@ export default function Announcement() {
             <div className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-[#FFD700]" style={{ boxShadow: '0 0 10px rgba(255,215,0,0.5)' }} />
           </div>
           <p className="font-montserrat text-sm md:text-base text-white uppercase tracking-[0.3em] font-medium" style={{ textShadow: '0 2px 15px rgba(0,0,0,0.8), 0 4px 25px rgba(0,0,0,0.6)' }}>
-            Lễ Thành Hôn
+            Lễ Vu Quy
           </p>
         </div>
 
@@ -255,14 +255,14 @@ export default function Announcement() {
           <div className="flex items-center gap-3">
             <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#FFD700]/50" />
             <p className="font-montserrat text-[#FFD700] text-sm md:text-base font-semibold tracking-[0.2em] uppercase" style={{ textShadow: '0 2px 15px rgba(0,0,0,0.8), 0 4px 25px rgba(0,0,0,0.6)' }}>
-              Thứ Bảy
+              Thứ Sáu
             </p>
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#FFD700]/50" />
           </div>
 
           {/* Date */}
           <div className="flex items-center gap-3 md:gap-6">
-            <p className="font-playfair text-2xl md:text-5xl text-white font-light" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.6)' }}>03</p>
+            <p className="font-playfair text-2xl md:text-5xl text-white font-light" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.6)' }}>02</p>
             <div className="w-px h-8 md:h-12 bg-[#FFD700]/50" />
             <p className="font-playfair text-2xl md:text-5xl text-white font-light" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.6)' }}>01</p>
             <div className="w-px h-8 md:h-12 bg-[#FFD700]/50" />
@@ -271,7 +271,7 @@ export default function Announcement() {
 
           {/* Lunar date */}
           <p className="font-playfair text-base md:text-xl text-white/90 italic" style={{ textShadow: '0 2px 15px rgba(0,0,0,0.8), 0 4px 25px rgba(0,0,0,0.6)' }}>
-            Nhằm ngày 15 tháng 11 năm Ất Tỵ
+            Nhằm ngày 14 tháng 11 năm Ất Tỵ
           </p>
         </div>
       </div>

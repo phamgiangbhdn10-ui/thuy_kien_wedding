@@ -291,7 +291,7 @@ export default function Details() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                Tiệc Cưới
+                Lễ Vu Quy
               </motion.h2>
               <div className="flex items-center justify-center gap-3">
                 <motion.div 
@@ -352,10 +352,10 @@ export default function Details() {
                   </div>
                   <div className="h-px w-24 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mb-6" />
                   <p className="font-script text-2xl md:text-3xl text-navy/80 mb-3">
-                    Thứ Bảy
+                    Thứ Sáu
                   </p>
-                    <p className="font-playfair text-3xl md:text-4xl text-navy font-medium">
-                    03.01.2026
+                    <p className="font-playfair text-3xl md:text-4xl text-navy font-medium mb-2">
+                    02.01.2026
                   </p>
                 </div>
               </motion.div>
@@ -374,12 +374,12 @@ export default function Details() {
                 </p>
                 <div className="min-h-[200px] md:min-h-[240px] flex flex-col justify-center items-center">
                   <p className="font-playfair text-4xl md:text-5xl text-[#D4AF37] font-light mb-6 leading-tight">
-                    Điểm Dừng Chân<br />Hương Nhung
+                    Tư Gia Nhà Gái
                   </p>
                   <div className="h-px w-24 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mb-6" />
                   <p className="font-montserrat text-base md:text-lg text-navy/70 leading-relaxed">
-                    KM 20, QL 14 - Ấp 6<br />
-                    Xã Đồng Tâm - T. Đồng Nai
+                    Thôn 11, xã Nghĩa Trung<br />
+                    T. Đồng Nai
                   </p>
                 </div>
               </motion.div>
@@ -397,7 +397,7 @@ export default function Details() {
             {/* Map Link */}
             <div className="text-center">
               <a
-                href="https://maps.app.goo.gl/3HT4Dc41cmuk5Eo27"
+                href="https://maps.app.goo.gl/4rFAGZ5MRdXFMUkW8"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-accent to-accent-light text-cream font-montserrat text-sm font-medium hover:shadow-lg transition-all duration-300"

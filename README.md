@@ -1,4 +1,4 @@
-# 💒 Thiệp Cưới Online - Trung Kiên & Ngọc Thùy
+# 💒 Thiệp Cưới Online - Trung Kiên & Ngọc Thuỳ
 
 > *"Hai trái tim, một tình yêu, một đời chung"*
 
@@ -6,9 +6,9 @@
 
 ## 💕 Về Chúng Tôi
 
-**Ngô Trung Kiên** & **Phạm Ngọc Thùy**
+**Ngô Trung Kiên** & **Phạm Ngọc Thuỳ**
 
-Chúng tôi hân hạnh mời quý khách đến dự lễ thành hôn của chúng tôi vào ngày **03 tháng 01 năm 2026**.
+Chúng tôi hân hạnh mời quý khách đến dự lễ vu quy của chúng tôi vào ngày **02 tháng 01 năm 2026**.
 
 ---
 
@@ -25,24 +25,23 @@ Chúng tôi hân hạnh mời quý khách đến dự lễ thành hôn của ch�
 
 ---
 
-## 📅 Thông Tin Lễ Cưới
+## 📅 Thông Tin Lễ Vu Quy
 
 ### ⏰ Thời Gian
-**Ngày:** 03 tháng 01 năm 2026  
-**Giờ:** 11:00 A.M
+**Ngày:** Thứ Sáu, 02 tháng 01 năm 2026  
+**Giờ:** 11:00 A.M  
+**Nhằm ngày:** 14-11-Ất Tỵ
 
 ### 📍 Địa Điểm
-**Điểm Dừng Chân Hương Nhung**  
-KM 20, QL 14 - Ấp 6  
-Xã Đồng Tâm - T. Đồng Nai
-
-**Bản đồ:** [Xem trên Google Maps](https://maps.app.goo.gl/CfoSTidiRKjPgMBj8)
+**Tư Gia Nhà Gái**  
+Thôn 11, xã Nghĩa Trung  
+T. Đồng Nai
 
 ---
 
 ## 💌 Lời Mời
 
-> *"Trân trọng kính mời quý khách đến dự lễ thành hôn của chúng tôi"*
+> *"Trân trọng kính mời quý khách đến dự lễ vu quy của chúng tôi"*
 
 Sự hiện diện của quý khách là niềm vinh hạnh cho gia đình chúng tôi.
 
@@ -105,9 +104,9 @@ Chúng tôi xin chân thành cảm ơn quý khách đã dành thời gian xem th
 
 <div align="center">
 
-**Made with ❤️ for Trung Kiên & Ngọc Thùy**
+**Made with ❤️ for Trung Kiên & Ngọc Thuỳ**
 
-*03.01.2026*
+*02.01.2026*
 
 💒 💕 💒
 

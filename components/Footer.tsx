@@ -13,13 +13,13 @@ export default function Footer() {
               Bản Đồ Địa Điểm
             </h3>
             <p className="font-montserrat text-base text-navy/50">
-              Điểm Dừng Chân Hương Nhung
+              Tư Gia Nhà Gái
             </p>
           </div>
           
           <div className="max-w-4xl mx-auto relative rounded-2xl overflow-hidden shadow-xl border-2 border-[#D4AF37]/20">
             <iframe
-              src="https://www.google.com/maps?q=10.9532158,106.8866982&hl=vi&z=15&output=embed"
+              src="https://www.google.com/maps?q=11.6627747,107.0707222&hl=vi&z=15&output=embed"
               width="100%"
               height="400"
               style={{ border: 0 }}
@@ -30,7 +30,7 @@ export default function Footer() {
             />
             
             <a
-              href="https://maps.app.goo.gl/CfoSTidiRKjPgMBj8"
+              href="https://maps.app.goo.gl/4rFAGZ5MRdXFMUkW8"
               target="_blank"
               rel="noopener noreferrer"
               className="absolute bottom-4 right-4 bg-[#D4AF37] hover:bg-[#C4A030] text-white px-5 py-3 rounded-xl font-montserrat text-sm font-medium shadow-lg transition-all duration-300 flex items-center gap-2"
@@ -66,7 +66,7 @@ export default function Footer() {
 
             {/* Date */}
             <p className="font-montserrat text-sm text-accent tracking-wider mb-6">
-              03.01.2026
+              02.01.2026
             </p>
 
             {/* Decorative Line */}

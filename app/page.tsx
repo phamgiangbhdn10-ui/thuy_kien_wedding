@@ -9,6 +9,7 @@ import Details from '@/components/Details'
 import Family from '@/components/Family'
 import Quotes from '@/components/Quotes'
 import Gallery from '@/components/Gallery'
+import LeHoiSlider from '@/components/LeHoiSlider'
 import RSVP from '@/components/RSVP'
 import Footer from '@/components/Footer'
 import ParticlesBackground from '@/components/ParticlesBackground'
@@ -115,6 +116,10 @@ export default function Home() {
 
         <section id="quotes">
           <Quotes />
+        </section>
+
+        <section id="lehoi">
+          <LeHoiSlider />
         </section>
 
         <section id="gallery">
