@@ -4,13 +4,13 @@ import './globals.css'
 export const metadata: Metadata = {
   metadataBase: new URL('https://wedding-thuy-kien.vercel.app'),
   title: 'Trung Kiên & Ngọc Thùy - Wedding',
-  description: 'Ngô Trung Kiên & Phạm Ngọc Thùy - 03.01.2026',
+  description: 'Ngô Trung Kiên & Phạm Ngọc Thùy - 02.01.2026',
   icons: {
     icon: '/favicon.ico',
   },
   openGraph: {
     title: 'Trung Kiên & Ngọc Thùy - Wedding',
-    description: 'Ngô Trung Kiên & Phạm Ngọc Thùy - 03.01.2026',
+    description: 'Ngô Trung Kiên & Phạm Ngọc Thùy - 02.01.2026',
     url: 'https://wedding-thuy-kien.vercel.app',
     siteName: 'Thiệp Cưới Trung Kiên & Ngọc Thùy',
     images: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Trung Kiên & Ngọc Thùy - Wedding',
-    description: 'Ngô Trung Kiên & Phạm Ngọc Thùy - 03.01.2026',
+    description: 'Ngô Trung Kiên & Phạm Ngọc Thùy - 02.01.2026',
     images: ['https://wedding-thuy-kien.vercel.app/images/1200x630.jpg'],
   },
   alternates: {
