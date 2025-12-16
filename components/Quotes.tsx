@@ -239,9 +239,9 @@ export default function Quotes() {
 
         {/* Two Quotes - Side by Side */}
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {/* Groom's Quote */}
+          {/* Bride's Quote */}
           <motion.div
-            ref={groomRef}
+            ref={brideRef}
             initial={{ opacity: 0, x: -50, rotateY: -15 }}
             whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -259,80 +259,6 @@ export default function Quotes() {
               rotateY: { duration: 0.8, ease: "easeOut" },
               y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
               boxShadow: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-            }}
-            style={{ perspective: '1000px' }}
-          >
-            <motion.div 
-              className="rounded-3xl p-10 md:p-12 border-2 border-[#D4AF37]/20 h-full relative overflow-hidden"
-              style={{
-                background: 'linear-gradient(145deg, #FFFFFF 0%, #FDF9F3 50%, #FAF6EE 100%)'
-              }}
-              whileHover={{ borderColor: 'rgba(212, 175, 55, 0.6)' }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Animated background glow */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/0 to-[#D4AF37]/0 rounded-3xl"
-                whileHover={{ background: 'linear-gradient(145deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.1) 100%)' }}
-                transition={{ duration: 0.3 }}
-              />
-              
-              <div className="relative z-10">
-                {/* Groom name - Script font */}
-                <motion.div
-                  className="text-center mb-8"
-                  initial={{ scale: 0.9 }}
-                  whileInView={{ scale: 1 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <p className="font-script text-4xl md:text-5xl text-[#D4AF37] mb-2">
-                    Trung Kiên
-                  </p>
-                  <p className="font-montserrat text-xs text-navy/50 uppercase tracking-widest">
-                    Chú Rể
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  className="h-px w-20 mx-auto bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mb-8"
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                />
-
-                {/* Quote - Elegant script style */}
-                <motion.p
-                  className="font-playfair text-xl md:text-2xl text-navy/80 italic leading-relaxed text-center font-light"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  "Em là ánh sáng của cuộc đời anh, là lý do anh thức dậy mỗi sáng với nụ cười trên môi. Cảm ơn em đã chọn anh."
-                </motion.p>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Bride's Quote */}
-          <motion.div
-            ref={brideRef}
-            initial={{ opacity: 0, x: 50, rotateY: 15 }}
-            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            animate={{ 
-              y: [0, -8, 0],
-              boxShadow: [
-                '0 20px 40px rgba(25, 47, 74, 0.12)',
-                '0 25px 50px rgba(212, 175, 55, 0.2)',
-                '0 20px 40px rgba(25, 47, 74, 0.12)'
-              ]
-            }}
-            transition={{ 
-              opacity: { duration: 0.8, ease: "easeOut", delay: 0.2 },
-              x: { duration: 0.8, ease: "easeOut", delay: 0.2 },
-              rotateY: { duration: 0.8, ease: "easeOut", delay: 0.2 },
-              y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
-              boxShadow: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
             }}
             style={{ perspective: '1000px' }}
           >
@@ -382,6 +308,80 @@ export default function Quotes() {
                   transition={{ delay: 0.4 }}
                 >
                   "Anh là người khiến em tin vào tình yêu đích thực. Cảm ơn anh đã đến và làm cho cuộc sống của em trở nên hoàn hảo."
+                </motion.p>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Groom's Quote */}
+          <motion.div
+            ref={groomRef}
+            initial={{ opacity: 0, x: 50, rotateY: 15 }}
+            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            animate={{ 
+              y: [0, -8, 0],
+              boxShadow: [
+                '0 20px 40px rgba(25, 47, 74, 0.12)',
+                '0 25px 50px rgba(212, 175, 55, 0.2)',
+                '0 20px 40px rgba(25, 47, 74, 0.12)'
+              ]
+            }}
+            transition={{ 
+              opacity: { duration: 0.8, ease: "easeOut", delay: 0.2 },
+              x: { duration: 0.8, ease: "easeOut", delay: 0.2 },
+              rotateY: { duration: 0.8, ease: "easeOut", delay: 0.2 },
+              y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
+              boxShadow: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
+            }}
+            style={{ perspective: '1000px' }}
+          >
+            <motion.div 
+              className="rounded-3xl p-10 md:p-12 border-2 border-[#D4AF37]/20 h-full relative overflow-hidden"
+              style={{
+                background: 'linear-gradient(145deg, #FFFFFF 0%, #FDF9F3 50%, #FAF6EE 100%)'
+              }}
+              whileHover={{ borderColor: 'rgba(212, 175, 55, 0.6)' }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Animated background glow */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/0 to-[#D4AF37]/0 rounded-3xl"
+                whileHover={{ background: 'linear-gradient(145deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.1) 100%)' }}
+                transition={{ duration: 0.3 }}
+              />
+              
+              <div className="relative z-10">
+                {/* Groom name - Script font */}
+                <motion.div
+                  className="text-center mb-8"
+                  initial={{ scale: 0.9 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <p className="font-script text-4xl md:text-5xl text-[#D4AF37] mb-2">
+                    Trung Kiên
+                  </p>
+                  <p className="font-montserrat text-xs text-navy/50 uppercase tracking-widest">
+                    Chú Rể
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  className="h-px w-20 mx-auto bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mb-8"
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                />
+
+                {/* Quote - Elegant script style */}
+                <motion.p
+                  className="font-playfair text-xl md:text-2xl text-navy/80 italic leading-relaxed text-center font-light"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                >
+                  "Em là ánh sáng của cuộc đời anh, là lý do anh thức dậy mỗi sáng với nụ cười trên môi. Cảm ơn em đã chọn anh."
                 </motion.p>
               </div>
             </motion.div>

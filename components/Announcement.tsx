@@ -189,12 +189,12 @@ export default function Announcement() {
         {/* Names - Diagonal style */}
         <div ref={namesRef} className="mb-6 relative">
           <div className="flex flex-col items-center gap-0">
-            {/* Groom name - left aligned, rotated */}
+            {/* Bride name - left aligned, rotated */}
             <p 
               className="font-script text-5xl md:text-6xl lg:text-7xl text-white self-start ml-4 md:ml-12 -rotate-3"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
             >
-              Trung Kiên
+              Ngọc Thuỳ
             </p>
             
             {/* & symbol - stylized with floating animation */}
@@ -217,12 +217,12 @@ export default function Announcement() {
               &
             </motion.p>
             
-            {/* Bride name - right aligned, rotated opposite */}
+            {/* Groom name - right aligned, rotated opposite */}
             <p 
               className="font-script text-5xl md:text-6xl lg:text-7xl text-white self-end mr-4 md:mr-12 rotate-3"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
             >
-              Ngọc Thuỳ
+              Trung Kiên
             </p>
           </div>
         </div>

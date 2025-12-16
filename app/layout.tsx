@@ -3,22 +3,22 @@ import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://thuy-kien-wedding.vercel.app'),
-  title: 'Trung Kiên & Ngọc Thùy - Wedding',
-  description: 'Ngô Trung Kiên & Phạm Ngọc Thùy - 02.01.2026',
+  title: 'Ngọc Thuỳ & Trung Kiên - Wedding',
+  description: 'Phạm Ngọc Thuỳ & Ngô Trung Kiên - 02.01.2026',
   icons: {
     icon: '/favicon.ico',
   },
   openGraph: {
-    title: 'Trung Kiên & Ngọc Thùy - Wedding',
-    description: 'Ngô Trung Kiên & Phạm Ngọc Thùy - 02.01.2026',
+    title: 'Ngọc Thuỳ & Trung Kiên - Wedding',
+    description: 'Phạm Ngọc Thuỳ & Ngô Trung Kiên - 02.01.2026',
     url: 'https://thuy-kien-wedding.vercel.app',
-    siteName: 'Thiệp Cưới Trung Kiên & Ngọc Thùy',
+    siteName: 'Thiệp Cưới Ngọc Thuỳ & Trung Kiên',
     images: [
       {
         url: 'https://thuy-kien-wedding.vercel.app/images/1200x630.jpg',
         width: 1200,
         height: 630,
-        alt: 'Thiệp cưới Trung Kiên & Ngọc Thùy',
+        alt: 'Thiệp cưới Ngọc Thuỳ & Trung Kiên',
         type: 'image/jpeg',
       },
     ],
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Trung Kiên & Ngọc Thùy - Wedding',
-    description: 'Ngô Trung Kiên & Phạm Ngọc Thùy - 02.01.2026',
+    title: 'Ngọc Thuỳ & Trung Kiên - Wedding',
+    description: 'Phạm Ngọc Thuỳ & Ngô Trung Kiên - 02.01.2026',
     images: ['https://thuy-kien-wedding.vercel.app/images/1200x630.jpg'],
   },
   alternates: {

@@ -54,14 +54,14 @@ export default function Footer() {
           <div className="text-center">
             {/* Monogram */}
             <div className="flex items-center justify-center gap-3 mb-6">
-              <span className="font-playfair text-4xl text-cream font-light">K</span>
-              <div className="w-px h-8 bg-accent" />
               <span className="font-playfair text-4xl text-cream font-light">T</span>
+              <div className="w-px h-8 bg-accent" />
+              <span className="font-playfair text-4xl text-cream font-light">K</span>
             </div>
 
             {/* Names */}
             <p className="font-playfair text-xl text-cream/90 mb-2">
-              Trung Kiên & Ngọc Thùy
+              Ngọc Thuỳ & Trung Kiên
             </p>
 
             {/* Date */}
@@ -102,7 +102,7 @@ export default function Footer() {
             {/* Copyright and Credits */}
             <div className="space-y-2">
               <p className="font-montserrat text-xs text-cream/50">
-                © {currentYear} Trung Kiên & Ngọc Thùy. Made with ♥
+                © {currentYear} Ngọc Thuỳ & Trung Kiên. Made with ♥
               </p>
               <p className="font-montserrat text-xs text-cream/40">
                 Designed by <span className="text-accent">Phạm Giang</span> & <span className="text-accent">Cursor AI</span>

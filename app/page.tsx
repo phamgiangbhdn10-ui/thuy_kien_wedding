@@ -42,9 +42,9 @@ export default function Home() {
       <div className="min-h-screen bg-cream flex items-center justify-center">
         <div className="text-center">
           <div className="flex items-center justify-center gap-3 mb-8">
-            <span className="font-playfair text-5xl text-navy font-light">K</span>
-            <div className="w-px h-12 bg-accent" />
             <span className="font-playfair text-5xl text-navy font-light">T</span>
+            <div className="w-px h-12 bg-accent" />
+            <span className="font-playfair text-5xl text-navy font-light">K</span>
           </div>
           <div className="flex items-center justify-center gap-2">
             {[0, 1, 2].map((i) => (

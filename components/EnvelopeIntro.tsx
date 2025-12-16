@@ -321,9 +321,9 @@ export default function EnvelopeIntro({ onComplete }: EnvelopeIntroProps) {
             
             {/* Monogram */}
             <div className="flex items-center gap-0.5 text-white group-hover:scale-105 transition-transform">
-              <span className="font-playfair text-2xl font-bold">K</span>
-              <span className="text-base">&</span>
               <span className="font-playfair text-2xl font-bold">T</span>
+              <span className="text-base">&</span>
+              <span className="font-playfair text-2xl font-bold">K</span>
             </div>
             
             {/* Hover glow effect */}

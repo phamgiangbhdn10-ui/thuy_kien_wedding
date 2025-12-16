@@ -327,140 +327,6 @@ export default function Family() {
 
             {/* Two columns - Always side by side with avatars */}
             <div className="grid grid-cols-2 gap-3 md:gap-8 mb-10">
-              {/* Nhà Trai */}
-              <div className="text-center flex flex-col items-center">
-                <h3 className="font-playfair text-base md:text-3xl text-navy mb-3 md:mb-6 font-medium">
-                  Nhà Trai
-                </h3>
-                
-                <div className="space-y-1 md:space-y-1 mb-3 md:mb-6">
-                  <p className="font-montserrat text-xs md:text-base text-navy/70 leading-tight">
-                    Ông: <span className="font-medium text-navy">Ngô Đăng Chính</span>
-                  </p>
-                  <p className="font-montserrat text-xs md:text-base text-navy/70 leading-tight">
-                    Bà: <span className="font-medium text-navy">Bùi Thị Hà</span>
-                  </p>
-                </div>
-
-                <p className="font-montserrat text-[10px] md:text-sm text-navy/50 mb-5 md:mb-8 leading-tight">
-                  Ấp 6 - Đồng Tâm<br className="md:hidden" /> T. Đồng Nai
-                </p>
-
-                {/* Avatar - Above name */}
-                <motion.div
-                  className="relative mb-5 md:mb-6"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <motion.div
-                    className="relative w-20 h-20 md:w-32 md:h-32"
-                    animate={{
-                      y: [0, -10, 0]
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: 'easeInOut'
-                    }}
-                  >
-                    {/* Outer glow effect */}
-                    <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-[#D4AF37]/20 via-[#E8C547]/15 to-[#D4AF37]/20 blur-xl" style={{ borderRadius: '50%' }} />
-                    
-                    {/* Decorative SVG border frame */}
-                    <svg className="absolute -inset-3 w-full h-full" style={{ borderRadius: '50%' }} viewBox="0 0 200 200">
-                      <defs>
-                        <linearGradient id="goldGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.6" />
-                          <stop offset="50%" stopColor="#E8C547" stopOpacity="0.4" />
-                          <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.6" />
-                        </linearGradient>
-                        <linearGradient id="goldGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#E8C547" stopOpacity="0.5" />
-                          <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.5" />
-                        </linearGradient>
-                      </defs>
-                      
-                      {/* Outer decorative ring with pattern */}
-                      <circle cx="100" cy="100" r="95" fill="none" stroke="url(#goldGradient1)" strokeWidth="1.5" />
-                      <circle cx="100" cy="100" r="88" fill="none" stroke="url(#goldGradient2)" strokeWidth="1" strokeDasharray="4 4" />
-                      
-                      {/* Decorative elements at cardinal points */}
-                      <g>
-                        {/* Top */}
-                        <circle cx="100" cy="5" r="2.5" fill="#D4AF37" opacity="0.7" />
-                        <path d="M 100 0 L 100 10 M 95 5 L 105 5" stroke="#D4AF37" strokeWidth="1" opacity="0.5" />
-                        {/* Bottom */}
-                        <circle cx="100" cy="195" r="2.5" fill="#D4AF37" opacity="0.7" />
-                        <path d="M 100 190 L 100 200 M 95 195 L 105 195" stroke="#D4AF37" strokeWidth="1" opacity="0.5" />
-                        {/* Left */}
-                        <circle cx="5" cy="100" r="2.5" fill="#D4AF37" opacity="0.7" />
-                        <path d="M 0 100 L 10 100 M 5 95 L 5 105" stroke="#D4AF37" strokeWidth="1" opacity="0.5" />
-                        {/* Right */}
-                        <circle cx="195" cy="100" r="2.5" fill="#D4AF37" opacity="0.7" />
-                        <path d="M 190 100 L 200 100 M 195 95 L 195 105" stroke="#D4AF37" strokeWidth="1" opacity="0.5" />
-                      </g>
-                      
-                      {/* Inner decorative ring */}
-                      <circle cx="100" cy="100" r="82" fill="none" stroke="#D4AF37" strokeWidth="2" opacity="0.4" />
-                      <circle cx="100" cy="100" r="78" fill="none" stroke="url(#goldGradient1)" strokeWidth="1" />
-                    </svg>
-                    
-                    {/* Middle ring with subtle pattern */}
-                    <div className="absolute -inset-2 rounded-full border-2 border-[#D4AF37]/30" style={{ borderRadius: '50%' }} />
-                    
-                    {/* Inner decorative border with gradient */}
-                    <div 
-                      className="absolute -inset-1 rounded-full"
-                      style={{
-                        borderRadius: '50%',
-                        background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.5) 0%, rgba(232, 197, 71, 0.3) 50%, rgba(212, 175, 55, 0.5) 100%)',
-                        padding: '2px'
-                      }}
-                    >
-                      <div className="w-full h-full rounded-full bg-transparent" style={{ borderRadius: '50%' }} />
-                    </div>
-                    
-                    {/* Avatar image container with elegant inset border */}
-                    <div className="relative w-full h-full rounded-full overflow-hidden z-10" style={{
-                      boxShadow: `
-                        0 8px 32px rgba(212, 175, 55, 0.25),
-                        inset 0 0 0 3px rgba(255, 255, 255, 0.95),
-                        inset 0 0 0 5px rgba(212, 175, 55, 0.4)
-                      `,
-                      borderRadius: '50%'
-                    }}>
-                      <Image
-                        src="/images/avatar/cr.jpg"
-                        alt="Chú rể"
-                        fill
-                        className="object-cover rounded-full"
-                        style={{ borderRadius: '50%' }}
-                        quality={85}
-                        sizes="(max-width: 768px) 80px, 128px"
-                      />
-                    </div>
-                    
-                    {/* Subtle inner glow - static */}
-                    <div
-                      className="absolute -inset-0.5 rounded-full border border-[#D4AF37]/20"
-                      style={{ 
-                        borderRadius: '50%',
-                        boxShadow: '0 0 15px rgba(212, 175, 55, 0.3)'
-                      }}
-                    />
-                  </motion.div>
-                </motion.div>
-
-                {/* Groom name - Script font */}
-                <motion.p
-                  className="font-script text-xl md:text-5xl text-[#D4AF37] leading-tight"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  Trung Kiên
-                </motion.p>
-              </div>
-
               {/* Nhà Gái */}
               <div className="text-center flex flex-col items-center">
                 <h3 className="font-playfair text-base md:text-3xl text-navy mb-3 md:mb-6 font-medium">
@@ -494,8 +360,7 @@ export default function Family() {
                     transition={{
                       duration: 4,
                       repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: 0.5
+                      ease: 'easeInOut'
                     }}
                   >
                     {/* Outer glow effect */}
@@ -593,6 +458,141 @@ export default function Family() {
                   transition={{ duration: 0.3 }}
                 >
                   Ngọc Thùy
+                </motion.p>
+              </div>
+
+              {/* Nhà Trai */}
+              <div className="text-center flex flex-col items-center">
+                <h3 className="font-playfair text-base md:text-3xl text-navy mb-3 md:mb-6 font-medium">
+                  Nhà Trai
+                </h3>
+                
+                <div className="space-y-1 md:space-y-1 mb-3 md:mb-6">
+                  <p className="font-montserrat text-xs md:text-base text-navy/70 leading-tight">
+                    Ông: <span className="font-medium text-navy">Ngô Đăng Chính</span>
+                  </p>
+                  <p className="font-montserrat text-xs md:text-base text-navy/70 leading-tight">
+                    Bà: <span className="font-medium text-navy">Bùi Thị Hà</span>
+                  </p>
+                </div>
+
+                <p className="font-montserrat text-[10px] md:text-sm text-navy/50 mb-5 md:mb-8 leading-tight">
+                  Ấp 6 - Đồng Tâm<br className="md:hidden" /> T. Đồng Nai
+                </p>
+
+                {/* Avatar - Above name */}
+                <motion.div
+                  className="relative mb-5 md:mb-6"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className="relative w-20 h-20 md:w-32 md:h-32"
+                    animate={{
+                      y: [0, -10, 0]
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                      delay: 0.5
+                    }}
+                  >
+                    {/* Outer glow effect */}
+                    <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-[#D4AF37]/20 via-[#E8C547]/15 to-[#D4AF37]/20 blur-xl" style={{ borderRadius: '50%' }} />
+                    
+                    {/* Decorative SVG border frame */}
+                    <svg className="absolute -inset-3 w-full h-full" style={{ borderRadius: '50%' }} viewBox="0 0 200 200">
+                      <defs>
+                        <linearGradient id="goldGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.6" />
+                          <stop offset="50%" stopColor="#E8C547" stopOpacity="0.4" />
+                          <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.6" />
+                        </linearGradient>
+                        <linearGradient id="goldGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#E8C547" stopOpacity="0.5" />
+                          <stop offset="100%" stopColor="#D4AF37" stopOpacity="0.5" />
+                        </linearGradient>
+                      </defs>
+                      
+                      {/* Outer decorative ring with pattern */}
+                      <circle cx="100" cy="100" r="95" fill="none" stroke="url(#goldGradient1)" strokeWidth="1.5" />
+                      <circle cx="100" cy="100" r="88" fill="none" stroke="url(#goldGradient2)" strokeWidth="1" strokeDasharray="4 4" />
+                      
+                      {/* Decorative elements at cardinal points */}
+                      <g>
+                        {/* Top */}
+                        <circle cx="100" cy="5" r="2.5" fill="#D4AF37" opacity="0.7" />
+                        <path d="M 100 0 L 100 10 M 95 5 L 105 5" stroke="#D4AF37" strokeWidth="1" opacity="0.5" />
+                        {/* Bottom */}
+                        <circle cx="100" cy="195" r="2.5" fill="#D4AF37" opacity="0.7" />
+                        <path d="M 100 190 L 100 200 M 95 195 L 105 195" stroke="#D4AF37" strokeWidth="1" opacity="0.5" />
+                        {/* Left */}
+                        <circle cx="5" cy="100" r="2.5" fill="#D4AF37" opacity="0.7" />
+                        <path d="M 0 100 L 10 100 M 5 95 L 5 105" stroke="#D4AF37" strokeWidth="1" opacity="0.5" />
+                        {/* Right */}
+                        <circle cx="195" cy="100" r="2.5" fill="#D4AF37" opacity="0.7" />
+                        <path d="M 190 100 L 200 100 M 195 95 L 195 105" stroke="#D4AF37" strokeWidth="1" opacity="0.5" />
+                      </g>
+                      
+                      {/* Inner decorative ring */}
+                      <circle cx="100" cy="100" r="82" fill="none" stroke="#D4AF37" strokeWidth="2" opacity="0.4" />
+                      <circle cx="100" cy="100" r="78" fill="none" stroke="url(#goldGradient1)" strokeWidth="1" />
+                    </svg>
+                    
+                    {/* Middle ring with subtle pattern */}
+                    <div className="absolute -inset-2 rounded-full border-2 border-[#D4AF37]/30" style={{ borderRadius: '50%' }} />
+                    
+                    {/* Inner decorative border with gradient */}
+                    <div 
+                      className="absolute -inset-1 rounded-full"
+                      style={{
+                        borderRadius: '50%',
+                        background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.5) 0%, rgba(232, 197, 71, 0.3) 50%, rgba(212, 175, 55, 0.5) 100%)',
+                        padding: '2px'
+                      }}
+                    >
+                      <div className="w-full h-full rounded-full bg-transparent" style={{ borderRadius: '50%' }} />
+                    </div>
+                    
+                    {/* Avatar image container with elegant inset border */}
+                    <div className="relative w-full h-full rounded-full overflow-hidden z-10" style={{
+                      boxShadow: `
+                        0 8px 32px rgba(212, 175, 55, 0.25),
+                        inset 0 0 0 3px rgba(255, 255, 255, 0.95),
+                        inset 0 0 0 5px rgba(212, 175, 55, 0.4)
+                      `,
+                      borderRadius: '50%'
+                    }}>
+                      <Image
+                        src="/images/avatar/cr.jpg"
+                        alt="Chú rể"
+                        fill
+                        className="object-cover rounded-full"
+                        style={{ borderRadius: '50%' }}
+                        quality={85}
+                        sizes="(max-width: 768px) 80px, 128px"
+                      />
+                    </div>
+                    
+                    {/* Subtle inner glow - static */}
+                    <div
+                      className="absolute -inset-0.5 rounded-full border border-[#D4AF37]/20"
+                      style={{ 
+                        borderRadius: '50%',
+                        boxShadow: '0 0 15px rgba(212, 175, 55, 0.3)'
+                      }}
+                    />
+                  </motion.div>
+                </motion.div>
+
+                {/* Groom name - Script font */}
+                <motion.p
+                  className="font-script text-xl md:text-5xl text-[#D4AF37] leading-tight"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  Trung Kiên
                 </motion.p>
               </div>
             </div>
