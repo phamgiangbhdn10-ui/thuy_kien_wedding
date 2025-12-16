@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://wedding-thuy-kien.vercel.app'),
+  metadataBase: new URL('https://thuy-kien-wedding.vercel.app'),
   title: 'Trung Kiên & Ngọc Thùy - Wedding',
   description: 'Ngô Trung Kiên & Phạm Ngọc Thùy - 02.01.2026',
   icons: {
@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Trung Kiên & Ngọc Thùy - Wedding',
     description: 'Ngô Trung Kiên & Phạm Ngọc Thùy - 02.01.2026',
-    url: 'https://wedding-thuy-kien.vercel.app',
+    url: 'https://thuy-kien-wedding.vercel.app',
     siteName: 'Thiệp Cưới Trung Kiên & Ngọc Thùy',
     images: [
       {
-        url: 'https://wedding-thuy-kien.vercel.app/images/1200x630.jpg',
+        url: 'https://thuy-kien-wedding.vercel.app/images/1200x630.jpg',
         width: 1200,
         height: 630,
         alt: 'Thiệp cưới Trung Kiên & Ngọc Thùy',
@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Trung Kiên & Ngọc Thùy - Wedding',
     description: 'Ngô Trung Kiên & Phạm Ngọc Thùy - 02.01.2026',
-    images: ['https://wedding-thuy-kien.vercel.app/images/1200x630.jpg'],
+    images: ['https://thuy-kien-wedding.vercel.app/images/1200x630.jpg'],
   },
   alternates: {
-    canonical: 'https://wedding-thuy-kien.vercel.app',
+    canonical: 'https://thuy-kien-wedding.vercel.app',
   },
   other: {
     'og:image:width': '1200',
