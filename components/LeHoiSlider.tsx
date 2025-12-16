@@ -10,7 +10,7 @@ import { Navigation, Pagination } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
 
 // Import Swiper styles
-import 'swiper/swiper-bundle.min.css'
+import 'swiper/css/bundle'
 
 gsap.registerPlugin(ScrollTrigger)
 
