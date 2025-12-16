@@ -15,15 +15,15 @@ import 'swiper/css/bundle'
 gsap.registerPlugin(ScrollTrigger)
 
 const lehoiImages = [
-  { src: '/lehoi/1.JPG', alt: 'Đám hỏi 1' },
-  { src: '/lehoi/2.JPG', alt: 'Đám hỏi 2' },
-  { src: '/lehoi/3.JPG', alt: 'Đám hỏi 3' },
-  { src: '/lehoi/4.JPG', alt: 'Đám hỏi 4' },
-  { src: '/lehoi/5.JPG', alt: 'Đám hỏi 5' },
-  { src: '/lehoi/6.JPG', alt: 'Đám hỏi 6' },
-  { src: '/lehoi/7.JPG', alt: 'Đám hỏi 7' },
-  { src: '/lehoi/8.JPG', alt: 'Đám hỏi 8' },
-  { src: '/lehoi/9.JPG', alt: 'Đám hỏi 9' },
+  { src: '/lehoi/i_1.JPG', alt: 'Đám hỏi 1' },
+  { src: '/lehoi/i_2.JPG', alt: 'Đám hỏi 2' },
+  { src: '/lehoi/i_3.JPG', alt: 'Đám hỏi 3' },
+  { src: '/lehoi/i_4.JPG', alt: 'Đám hỏi 4' },
+  { src: '/lehoi/i_5.JPG', alt: 'Đám hỏi 5' },
+  { src: '/lehoi/i_6.JPG', alt: 'Đám hỏi 6' },
+  { src: '/lehoi/i_7.JPG', alt: 'Đám hỏi 7' },
+  { src: '/lehoi/i_8.JPG', alt: 'Đám hỏi 8' },
+  { src: '/lehoi/i_9.JPG', alt: 'Đám hỏi 9' },
 ]
 
 export default function LeHoiSlider() {
