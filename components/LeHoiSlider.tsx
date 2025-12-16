@@ -95,11 +95,19 @@ export default function LeHoiSlider() {
               setTimeout(() => {
                 const img = new window.Image()
                 img.onload = () => {
-                  setImagesLoaded((prev) => new Set([...prev, index]))
+                  setImagesLoaded((prev) => {
+                    const newSet = new Set(prev)
+                    newSet.add(index)
+                    return newSet
+                  })
                 }
                 img.onerror = () => {
                   // Still mark as loaded to avoid infinite loading
-                  setImagesLoaded((prev) => new Set([...prev, index]))
+                  setImagesLoaded((prev) => {
+                    const newSet = new Set(prev)
+                    newSet.add(index)
+                    return newSet
+                  })
                 }
                 img.src = image.src
               }, index * 100) // Stagger loading to avoid blocking
@@ -127,7 +135,11 @@ export default function LeHoiSlider() {
     if (!imagesLoaded.has(nextIndex)) {
       const nextImg = new window.Image()
       nextImg.onload = () => {
-        setImagesLoaded((prev) => new Set([...prev, nextIndex]))
+        setImagesLoaded((prev) => {
+          const newSet = new Set(prev)
+          newSet.add(nextIndex)
+          return newSet
+        })
       }
       nextImg.src = lehoiImages[nextIndex].src
     }
@@ -136,7 +148,11 @@ export default function LeHoiSlider() {
     if (!imagesLoaded.has(prevIndex)) {
       const prevImg = new window.Image()
       prevImg.onload = () => {
-        setImagesLoaded((prev) => new Set([...prev, prevIndex]))
+        setImagesLoaded((prev) => {
+          const newSet = new Set(prev)
+          newSet.add(prevIndex)
+          return newSet
+        })
       }
       prevImg.src = lehoiImages[prevIndex].src
     }
