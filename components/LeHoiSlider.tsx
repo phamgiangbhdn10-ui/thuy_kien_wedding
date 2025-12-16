@@ -1,10 +1,18 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence, type PanInfo } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Pagination } from 'swiper/modules'
+import type { Swiper as SwiperType } from 'swiper'
+
+// Import Swiper styles
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -51,112 +59,8 @@ const lehoiImages = [
 
 export default function LeHoiSlider() {
   const sectionRef = useRef<HTMLElement>(null)
+  const swiperRef = useRef<SwiperType | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
-  const [imagesLoaded, setImagesLoaded] = useState<Set<number>>(new Set())
-  const intervalRef = useRef<NodeJS.Timeout | null>(null)
-
-  // Auto-play slider
-  useEffect(() => {
-    if (!isPaused) {
-      intervalRef.current = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % lehoiImages.length)
-      }, 4000) // Change slide every 4 seconds
-    } else {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current)
-      }
-    }
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current)
-      }
-    }
-  }, [isPaused])
-
-  // Preload all images when section is about to be visible
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Add preload link tags to head for first few images
-            lehoiImages.slice(0, 3).forEach((image) => {
-              const link = document.createElement('link')
-              link.rel = 'preload'
-              link.as = 'image'
-              link.href = image.src
-              document.head.appendChild(link)
-            })
-
-            // Preload all images progressively
-            lehoiImages.forEach((image, index) => {
-              setTimeout(() => {
-                const img = new window.Image()
-                img.onload = () => {
-                  setImagesLoaded((prev) => {
-                    const newSet = new Set(prev)
-                    newSet.add(index)
-                    return newSet
-                  })
-                }
-                img.onerror = () => {
-                  // Still mark as loaded to avoid infinite loading
-                  setImagesLoaded((prev) => {
-                    const newSet = new Set(prev)
-                    newSet.add(index)
-                    return newSet
-                  })
-                }
-                img.src = image.src
-              }, index * 100) // Stagger loading to avoid blocking
-            })
-            observer.disconnect()
-          }
-        })
-      },
-      { rootMargin: '500px' } // Start loading 500px before visible
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  // Preload next and previous images for smooth transitions
-  useEffect(() => {
-    const nextIndex = (currentIndex + 1) % lehoiImages.length
-    const prevIndex = (currentIndex - 1 + lehoiImages.length) % lehoiImages.length
-
-    // Preload next image
-    if (!imagesLoaded.has(nextIndex)) {
-      const nextImg = new window.Image()
-      nextImg.onload = () => {
-        setImagesLoaded((prev) => {
-          const newSet = new Set(prev)
-          newSet.add(nextIndex)
-          return newSet
-        })
-      }
-      nextImg.src = lehoiImages[nextIndex].src
-    }
-
-    // Preload previous image
-    if (!imagesLoaded.has(prevIndex)) {
-      const prevImg = new window.Image()
-      prevImg.onload = () => {
-        setImagesLoaded((prev) => {
-          const newSet = new Set(prev)
-          newSet.add(prevIndex)
-          return newSet
-        })
-      }
-      prevImg.src = lehoiImages[prevIndex].src
-    }
-  }, [currentIndex, imagesLoaded])
 
   // GSAP animation on scroll
   useEffect(() => {
@@ -179,30 +83,6 @@ export default function LeHoiSlider() {
 
     return () => ctx.revert()
   }, [])
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index)
-  }
-
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % lehoiImages.length)
-  }
-
-  const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev - 1 + lehoiImages.length) % lehoiImages.length)
-  }
-
-  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    const threshold = 50 // Minimum drag distance to trigger slide change
-
-    if (Math.abs(info.offset.x) > threshold) {
-      if (info.offset.x > 0) {
-        goToPrevious()
-      } else {
-        goToNext()
-      }
-    }
-  }
 
   return (
     <section
@@ -256,105 +136,89 @@ export default function LeHoiSlider() {
         </div>
 
         {/* Slider Container */}
-        <div 
-          className="relative max-w-5xl mx-auto"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          {/* Slider Wrapper */}
-          <div className="relative aspect-[4/3] md:aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl">
-            {/* Loading indicator - only show if first 3 images not loaded */}
-            {imagesLoaded.size < 3 && (
-              <motion.div 
-                initial={{ opacity: 1 }}
-                animate={{ opacity: imagesLoaded.size >= 3 ? 0 : 1 }}
-                transition={{ duration: 0.3 }}
-                className="absolute inset-0 flex items-center justify-center bg-cream/90 backdrop-blur-sm z-20"
-              >
-                <div className="text-center">
-                  <div className="inline-block w-8 h-8 border-4 border-[#D4AF37] border-t-transparent rounded-full animate-spin mb-2"></div>
-                  <p className="text-[#D4AF37] text-sm font-montserrat">
-                    Đang tải hình ảnh... {imagesLoaded.size}/{lehoiImages.length}
-                  </p>
+        <div className="relative max-w-5xl mx-auto">
+          <Swiper
+            modules={[Navigation, Pagination]}
+            spaceBetween={0}
+            slidesPerView={1}
+            navigation={{
+              nextEl: '.swiper-button-next-custom',
+              prevEl: '.swiper-button-prev-custom',
+            }}
+            pagination={{
+              el: '.swiper-pagination-custom',
+              clickable: true,
+              renderBullet: (index: number, className: string) => {
+                return `<span class="${className}" style="width: ${index === currentIndex ? '32px' : '8px'}; height: 8px; border-radius: 4px; background: ${index === currentIndex ? '#D4AF37' : 'rgba(212, 175, 55, 0.4)'}; transition: all 0.3s;"></span>`
+              },
+            }}
+            onSwiper={(swiper: SwiperType) => {
+              swiperRef.current = swiper
+            }}
+            onSlideChange={(swiper: SwiperType) => {
+              setCurrentIndex(swiper.activeIndex)
+            }}
+            className="relative aspect-[4/3] md:aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl"
+          >
+            {lehoiImages.map((image, index) => (
+              <SwiperSlide key={index}>
+                <div className="relative w-full h-full">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 80vw"
+                    priority={index === 0 || index === 1}
+                    quality={75}
+                    loading={index <= 2 ? 'eager' : 'lazy'}
+                  />
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                 </div>
-              </motion.div>
-            )}
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, x: 300 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -300 }}
-                transition={{ duration: 0.5, ease: 'easeInOut' }}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.3}
-                onDragEnd={handleDragEnd}
-                className="absolute inset-0 cursor-grab active:cursor-grabbing"
-              >
-                <Image
-                  src={lehoiImages[currentIndex].src}
-                  alt={lehoiImages[currentIndex].alt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 80vw"
-                  priority={currentIndex === 0 || currentIndex === 1}
-                  quality={90}
-                  loading={currentIndex <= 2 ? 'eager' : 'lazy'}
-                />
-                {/* Gradient overlay for better text visibility */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Navigation Buttons */}
-            <button
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/80 hover:bg-white/90 backdrop-blur-sm flex items-center justify-center transition-all z-10 shadow-lg hover:scale-110"
-              onClick={goToPrevious}
-              aria-label="Previous image"
-            >
-              <svg className="w-5 h-5 md:w-6 md:h-6 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            <button
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/80 hover:bg-white/90 backdrop-blur-sm flex items-center justify-center transition-all z-10 shadow-lg hover:scale-110"
-              onClick={goToNext}
-              aria-label="Next image"
-            >
-              <svg className="w-5 h-5 md:w-6 md:h-6 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            {/* Image Counter */}
-            <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full z-10 shadow-lg">
-              <span className="text-[#D4AF37] text-sm font-montserrat font-medium">
-                {currentIndex + 1} / {lehoiImages.length}
-              </span>
-            </div>
-          </div>
-
-          {/* Dots Indicator */}
-          <div className="flex justify-center gap-2 mt-6">
-            {lehoiImages.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  index === currentIndex
-                    ? 'w-8 h-2 bg-[#D4AF37]'
-                    : 'w-2 h-2 bg-[#D4AF37]/40 hover:bg-[#D4AF37]/60'
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
+              </SwiperSlide>
             ))}
+          </Swiper>
+
+          {/* Custom Navigation Buttons */}
+          <button
+            className="swiper-button-prev-custom absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/80 hover:bg-white/90 backdrop-blur-sm flex items-center justify-center transition-all z-10 shadow-lg hover:scale-110"
+            aria-label="Previous image"
+          >
+            <svg className="w-5 h-5 md:w-6 md:h-6 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <button
+            className="swiper-button-next-custom absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/80 hover:bg-white/90 backdrop-blur-sm flex items-center justify-center transition-all z-10 shadow-lg hover:scale-110"
+            aria-label="Next image"
+          >
+            <svg className="w-5 h-5 md:w-6 md:h-6 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Image Counter */}
+          <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full z-10 shadow-lg">
+            <span className="text-[#D4AF37] text-sm font-montserrat font-medium">
+              {currentIndex + 1} / {lehoiImages.length}
+            </span>
           </div>
+
+          {/* Custom Pagination Dots */}
+          <div className="swiper-pagination-custom flex justify-center gap-2 mt-6"></div>
         </div>
       </div>
+
+      <style jsx global>{`
+        .swiper-button-prev-custom.swiper-button-disabled,
+        .swiper-button-next-custom.swiper-button-disabled {
+          opacity: 0.35;
+          cursor: auto;
+          pointer-events: none;
+        }
+      `}</style>
     </section>
   )
 }
-
