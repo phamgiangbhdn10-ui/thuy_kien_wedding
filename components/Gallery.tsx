@@ -122,15 +122,46 @@ export default function Gallery() {
       <div className="container mx-auto px-4">
         {/* Section Title */}
         <div className="gallery-title text-center mb-16">
-          <h2 className="font-script text-5xl md:text-6xl lg:text-7xl text-[#D4AF37] mb-4">
+          <motion.h2 
+            className="font-script text-5xl md:text-6xl lg:text-7xl text-[#D4AF37] mb-4"
+            initial={{ scale: 0.9 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             Khoảnh Khắc Đẹp
-          </h2>
+          </motion.h2>
           <div className="flex items-center justify-center gap-3">
-            <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent to-[#D4AF37]" />
-            <svg className="w-5 h-5 text-[#D4AF37]" viewBox="0 0 24 24" fill="currentColor">
+            <motion.div 
+              className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent to-[#D4AF37]"
+              initial={{ width: 0 }}
+              whileInView={{ width: 96 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            />
+            <motion.svg 
+              className="w-5 h-5 text-[#D4AF37]" 
+              viewBox="0 0 24 24" 
+              fill="currentColor"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                rotate: [0, 10, -10, 0]
+              }}
+              transition={{ 
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
-            <div className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-[#D4AF37]" />
+            </motion.svg>
+            <motion.div 
+              className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-[#D4AF37]"
+              initial={{ width: 0 }}
+              whileInView={{ width: 96 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            />
           </div>
         </div>
 

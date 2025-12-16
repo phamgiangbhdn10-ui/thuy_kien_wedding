@@ -273,19 +273,56 @@ export default function RSVP() {
 
             {/* Section Title */}
             <div className="text-center mb-12">
-              <h2 className="font-script text-5xl md:text-6xl lg:text-7xl text-[#D4AF37] mb-4">
+              <motion.h2 
+                className="font-script text-5xl md:text-6xl lg:text-7xl text-[#D4AF37] mb-4"
+                initial={{ scale: 0.9 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
                 Gửi Lời Chúc
-              </h2>
+              </motion.h2>
               <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent to-[#D4AF37]" />
-                <svg className="w-5 h-5 text-[#D4AF37]" viewBox="0 0 24 24" fill="currentColor">
+                <motion.div 
+                  className="h-px w-16 md:w-24 bg-gradient-to-r from-transparent to-[#D4AF37]"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: 96 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                />
+                <motion.svg 
+                  className="w-5 h-5 text-[#D4AF37]" 
+                  viewBox="0 0 24 24" 
+                  fill="currentColor"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 10, -10, 0]
+                  }}
+                  transition={{ 
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
                   <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
-                <div className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-[#D4AF37]" />
+                </motion.svg>
+                <motion.div 
+                  className="h-px w-16 md:w-24 bg-gradient-to-l from-transparent to-[#D4AF37]"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: 96 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                />
               </div>
-              <p className="font-montserrat text-sm text-navy/60 max-w-md mx-auto">
+              <motion.p 
+                className="font-montserrat text-sm text-navy/60 max-w-md mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
                 Gửi lời chúc đến cô dâu chú rể qua Messenger
-              </p>
+              </motion.p>
             </div>
 
             {/* Message Form */}
@@ -387,7 +424,7 @@ export default function RSVP() {
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <span>Cô Dâu: 0965 542 727</span>
+                  <span>Cô Dâu: 0965 542 707</span>
                 </a>
               </div>
             </div>

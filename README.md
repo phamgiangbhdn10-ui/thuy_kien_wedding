@@ -21,7 +21,7 @@ Chúng tôi hân hạnh mời quý khách đến dự lễ thành hôn của ch�
 
 ### 👩 Nhà Gái
 - **Ông:** Phạm Thanh Tâm
-- **Địa chỉ:** Thôn 1 - Nghĩa Trung, T. Đồng Nai
+- **Địa chỉ:** Thôn 11 - Nghĩa Trung, T. Đồng Nai
 
 ---
 
@@ -34,7 +34,7 @@ Chúng tôi hân hạnh mời quý khách đến dự lễ thành hôn của ch�
 ### 📍 Địa Điểm
 **Điểm Dừng Chân Hương Nhung**  
 KM 20, QL 14 - Ấp 6  
-Xã Đồng Nai - T. Đồng Nai
+Xã Đồng Tâm - T. Đồng Nai
 
 **Bản đồ:** [Xem trên Google Maps](https://maps.app.goo.gl/CfoSTidiRKjPgMBj8)
 

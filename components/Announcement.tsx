@@ -185,13 +185,13 @@ export default function Announcement() {
       </div>
 
       {/* Content - Positioned at bottom */}
-      <div className="relative z-10 text-center px-4 pb-12 md:pb-16 w-full max-w-4xl mx-auto">
+      <div className="relative z-10 text-center px-4 pb-8 md:pb-16 pt-[60vh] md:pt-0 w-full max-w-4xl mx-auto">
         {/* Names - Diagonal style */}
         <div ref={namesRef} className="mb-6 relative">
           <div className="flex flex-col items-center gap-0">
             {/* Groom name - left aligned, rotated */}
             <p 
-              className="font-script text-5xl md:text-6xl lg:text-7xl text-white self-start ml-4 md:ml-12 -rotate-3"
+              className="font-script text-5xl md:text-8xl lg:text-9xl text-white self-start ml-4 md:ml-12 -rotate-3"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
             >
               Trung Kiên
@@ -199,7 +199,7 @@ export default function Announcement() {
             
             {/* & symbol - stylized with floating animation */}
             <motion.p 
-              className="font-script text-6xl md:text-7xl lg:text-8xl text-[#FFD700] my-1"
+              className="font-script text-6xl md:text-9xl lg:text-[10rem] text-[#FFD700] my-1"
               style={{ 
                 textShadow: '0 2px 20px rgba(0,0,0,0.6)'
               }}
@@ -219,7 +219,7 @@ export default function Announcement() {
             
             {/* Bride name - right aligned, rotated opposite */}
             <p 
-              className="font-script text-5xl md:text-6xl lg:text-7xl text-white self-end mr-4 md:mr-12 rotate-3"
+              className="font-script text-5xl md:text-8xl lg:text-9xl text-white self-end mr-4 md:mr-12 rotate-3"
               style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}
             >
               Ngọc Thùy
@@ -261,16 +261,16 @@ export default function Announcement() {
           </div>
 
           {/* Date */}
-          <div className="flex items-center gap-4 md:gap-6">
-            <p className="font-playfair text-4xl md:text-5xl text-white font-light" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.6)' }}>03</p>
-            <div className="w-px h-10 md:h-12 bg-[#FFD700]/50" />
-            <p className="font-playfair text-4xl md:text-5xl text-white font-light" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.6)' }}>01</p>
-            <div className="w-px h-10 md:h-12 bg-[#FFD700]/50" />
-            <p className="font-playfair text-4xl md:text-5xl text-white font-light" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.6)' }}>2026</p>
+          <div className="flex items-center gap-3 md:gap-6">
+            <p className="font-playfair text-2xl md:text-5xl text-white font-light" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.6)' }}>03</p>
+            <div className="w-px h-8 md:h-12 bg-[#FFD700]/50" />
+            <p className="font-playfair text-2xl md:text-5xl text-white font-light" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.6)' }}>01</p>
+            <div className="w-px h-8 md:h-12 bg-[#FFD700]/50" />
+            <p className="font-playfair text-2xl md:text-5xl text-white font-light" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8), 0 4px 30px rgba(0,0,0,0.6)' }}>2026</p>
           </div>
 
           {/* Lunar date */}
-          <p className="font-playfair text-lg md:text-xl text-white/90 italic" style={{ textShadow: '0 2px 15px rgba(0,0,0,0.8), 0 4px 25px rgba(0,0,0,0.6)' }}>
+          <p className="font-playfair text-base md:text-xl text-white/90 italic" style={{ textShadow: '0 2px 15px rgba(0,0,0,0.8), 0 4px 25px rgba(0,0,0,0.6)' }}>
             Nhằm ngày 15 tháng 11 năm Ất Tỵ
           </p>
         </div>
