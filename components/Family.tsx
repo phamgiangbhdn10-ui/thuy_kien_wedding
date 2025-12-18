@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
+import { getCloudinaryImageSrc } from '@/lib/cloudinary'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -430,7 +431,7 @@ export default function Family() {
                       borderRadius: '50%'
                     }}>
                       <Image
-                        src="/images/avatar/cd.jpg"
+                        src={getCloudinaryImageSrc('/images/avatar/cd.jpg')}
                         alt="Cô dâu"
                         fill
                         className="object-cover rounded-full"
@@ -565,7 +566,7 @@ export default function Family() {
                       borderRadius: '50%'
                     }}>
                       <Image
-                        src="/images/avatar/cr.jpg"
+                        src={getCloudinaryImageSrc('/images/avatar/cr.jpg')}
                         alt="Chú rể"
                         fill
                         className="object-cover rounded-full"
@@ -624,12 +625,11 @@ export default function Family() {
                 style={{ perspective: '1000px' }}
               >
                 <Image
-                  src="/images/60x120/c2.jpg"
+                  src={getCloudinaryImageSrc('/images/60x120/c2.jpg')}
                   alt="Wedding couple"
                   fill
                   className="object-cover"
-                  priority
-                  quality={90}
+                  quality={85}
                   sizes="(max-width: 768px) 256px, 320px"
                 />
                 {/* Animated border glow */}

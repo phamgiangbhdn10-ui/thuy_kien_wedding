@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import gsap from 'gsap'
@@ -8,28 +8,30 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
+import { getCloudinaryImageSrc } from '@/lib/cloudinary'
 
 // Import Swiper styles
 import 'swiper/css/bundle'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const lehoiImages = [
-  { src: '/lehoi/i_1.JPG', alt: 'Đám hỏi 1' },
-  { src: '/lehoi/i_2.JPG', alt: 'Đám hỏi 2' },
-  { src: '/lehoi/i_3.JPG', alt: 'Đám hỏi 3' },
-  { src: '/lehoi/i_4.JPG', alt: 'Đám hỏi 4' },
-  { src: '/lehoi/i_5.JPG', alt: 'Đám hỏi 5' },
-  { src: '/lehoi/i_6.JPG', alt: 'Đám hỏi 6' },
-  { src: '/lehoi/i_7.JPG', alt: 'Đám hỏi 7' },
-  { src: '/lehoi/i_8.JPG', alt: 'Đám hỏi 8' },
-  { src: '/lehoi/i_9.JPG', alt: 'Đám hỏi 9' },
-]
-
 export default function LeHoiSlider() {
   const sectionRef = useRef<HTMLElement>(null)
   const swiperRef = useRef<SwiperType | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
+
+  // Memoize lehoi images to ensure consistency between server and client
+  const lehoiImages = useMemo(() => [
+    { src: getCloudinaryImageSrc('/lehoi/i_1.JPG'), alt: 'Đám hỏi 1' },
+    { src: getCloudinaryImageSrc('/lehoi/i_2.JPG'), alt: 'Đám hỏi 2' },
+    { src: getCloudinaryImageSrc('/lehoi/i_3.JPG'), alt: 'Đám hỏi 3' },
+    { src: getCloudinaryImageSrc('/lehoi/i_4.JPG'), alt: 'Đám hỏi 4' },
+    { src: getCloudinaryImageSrc('/lehoi/i_5.JPG'), alt: 'Đám hỏi 5' },
+    { src: getCloudinaryImageSrc('/lehoi/i_6.JPG'), alt: 'Đám hỏi 6' },
+    { src: getCloudinaryImageSrc('/lehoi/i_7.JPG'), alt: 'Đám hỏi 7' },
+    { src: getCloudinaryImageSrc('/lehoi/i_8.JPG'), alt: 'Đám hỏi 8' },
+    { src: getCloudinaryImageSrc('/lehoi/i_9.JPG'), alt: 'Đám hỏi 9' },
+  ], [])
 
   // GSAP animation on scroll
   useEffect(() => {

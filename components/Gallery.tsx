@@ -1,28 +1,30 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
 import Sparkles from './Sparkles'
+import { getCloudinaryImageSrc } from '@/lib/cloudinary'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const galleryImages = [
-  { src: '/images/15x21/DSC00869.jpg', alt: 'Wedding Photo 1' },
-  { src: '/images/15x21/DSC01111.jpg', alt: 'Wedding Photo 2' },
-  { src: '/images/15x21/DSC01337.jpg', alt: 'Wedding Photo 3' },
-  { src: '/images/15x21/DSC01342.jpg', alt: 'Wedding Photo 4' },
-  { src: '/images/15x21/DSC01468.jpg', alt: 'Wedding Photo 5' },
-  { src: '/images/15x21/DSC01513.jpg', alt: 'Wedding Photo 6' },
-  { src: '/images/15x21/DSC01639.jpg', alt: 'Wedding Photo 7' },
-  { src: '/images/15x21/DSC01660.jpg', alt: 'Wedding Photo 8' },
-]
 
 export default function Gallery() {
   const sectionRef = useRef<HTMLElement>(null)
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null)
+
+  // Memoize gallery images to ensure consistency between server and client
+  const galleryImages = useMemo(() => [
+    { src: getCloudinaryImageSrc('/images/15x21/DSC00869.jpg'), alt: 'Wedding Photo 1' },
+    { src: getCloudinaryImageSrc('/images/15x21/DSC01111.jpg'), alt: 'Wedding Photo 2' },
+    { src: getCloudinaryImageSrc('/images/15x21/DSC01337.jpg'), alt: 'Wedding Photo 3' },
+    { src: getCloudinaryImageSrc('/images/15x21/DSC01342.jpg'), alt: 'Wedding Photo 4' },
+    { src: getCloudinaryImageSrc('/images/15x21/DSC01468.jpg'), alt: 'Wedding Photo 5' },
+    { src: getCloudinaryImageSrc('/images/15x21/DSC01513.jpg'), alt: 'Wedding Photo 6' },
+    { src: getCloudinaryImageSrc('/images/15x21/DSC01639.jpg'), alt: 'Wedding Photo 7' },
+    { src: getCloudinaryImageSrc('/images/15x21/DSC01660.jpg'), alt: 'Wedding Photo 8' },
+  ], [])
 
   // Lazy load gallery images only when section is visible
   useEffect(() => {

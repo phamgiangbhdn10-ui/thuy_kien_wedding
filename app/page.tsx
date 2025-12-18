@@ -17,6 +17,7 @@ import FloatingDecorations from '@/components/FloatingDecorations'
 import Sparkles from '@/components/Sparkles'
 import MusicPlayer from '@/components/MusicPlayer'
 import ScrollButton from '@/components/ScrollButton'
+import { getCloudinaryImageSrc } from '@/lib/cloudinary'
 
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true)
@@ -29,7 +30,7 @@ export default function Home() {
     const link = document.createElement('link')
     link.rel = 'preload'
     link.as = 'image'
-    link.href = '/images/60x120/c2.jpg'
+    link.href = getCloudinaryImageSrc('/images/60x120/c2.jpg')
     document.head.appendChild(link)
   }, [])
 

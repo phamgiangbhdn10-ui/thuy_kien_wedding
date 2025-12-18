@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { getCloudinaryBackgroundUrl } from '@/lib/cloudinary'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -89,7 +90,7 @@ export default function Announcement() {
         <div 
           className="absolute inset-0 bg-no-repeat bg-contain md:hidden"
           style={{
-            backgroundImage: 'url(/images/60x120/c1.jpg)',
+            backgroundImage: `url(${getCloudinaryBackgroundUrl('/images/60x120/c1.jpg')})`,
             backgroundSize: 'contain',
             backgroundPosition: 'center top',
           }}
@@ -98,7 +99,7 @@ export default function Announcement() {
         <div 
           className="hidden md:block absolute inset-0 bg-no-repeat bg-contain"
           style={{
-            backgroundImage: 'url(/images/15x21/DSC01337.jpg)',
+            backgroundImage: `url(${getCloudinaryBackgroundUrl('/images/15x21/DSC01337.jpg')})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             transformOrigin: 'center center',
